@@ -1,53 +1,33 @@
 <template>
-  <div id="app"> 
-    <h1> conNectUs </h1>  
-    <app-header v-bind:title="msg"></app-header>
-    <router-view></router-view>
-    <app-footer></app-footer>
+  <div id="app">
+    <Header></Header>
+    <router-view/>
+<!--     <LandingPage></LandingPage> -->
   </div>
 </template>
 
 <script>
-//Registering components Locally
+// import HelloWorld from './components/HelloWorld.vue'
+// import LandingPage from './components/LandingPage.vue'
+// import SignIn from './components/SignIn.vue'
 import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-//import PageContent from './components/PageContent.vue'
+
 export default {
   name: 'App',
-  data(){
-    return {
-          }
-  },
   components: {
-    //Registering with a name
-    'app-header':Header,
-    'app-footer':Footer,
-    //Registering without a name
-    //PageContent
+    Header
+  //   LandingPage,
+  //   SignIn
   }
 }
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: left;
+  text-align: center;
   color: #2c3e50;
-}
-h1 {
-  position: absolute;
-  width: 259px;
-  height: 72px;
-  left: 32px;
-  top: 9px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 48px;
-  line-height: 72px;
-  color: #000000;
 }
 </style>
