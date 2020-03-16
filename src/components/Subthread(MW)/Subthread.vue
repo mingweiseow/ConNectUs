@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #subthread-input {
     display: flex;
     justify-content: space-around;

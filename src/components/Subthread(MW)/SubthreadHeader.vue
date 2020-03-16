@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #module-header h1{
     position: absolute;
     width: 300px;

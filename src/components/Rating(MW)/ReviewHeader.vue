@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 h1 {
     font-family: 'Poppins';
     font-style: normal;
