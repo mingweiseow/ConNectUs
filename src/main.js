@@ -4,6 +4,8 @@ import Routes from './routes.js'
 import { BootstrapVue, IconsPlugin, BootstrapVueIcons} from 'bootstrap-vue'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 //Step 1 -- Import and use VueRouter
 import VueRouter from 'vue-router'
