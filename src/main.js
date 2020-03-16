@@ -10,6 +10,7 @@ Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(BootstrapVueIcons)
+
 Vue.config.productionTip = false
 
 //Step 3 - Register Routes

@@ -3,7 +3,7 @@
         <nav>
           <h1>{{ title }}</h1>
           <ul>
-             <li><router-link to="/" exact>Home</router-link></li>
+             <li><router-link to="/home" exact>Home</router-link></li>
              <li><router-link to="/modules" exact>Modules</router-link></li>
              <li><router-link to="/account" exact>Account</router-link></li>
           </ul>
