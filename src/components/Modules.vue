@@ -38,7 +38,7 @@
     <label id = "line"> </label>
     <label id = "firstmodbox"></label>
     <ul>
-      <li1><router-link to="/" exact>CS1010S</router-link></li1>
+      <li1><router-link to="/summary" exact>CS1010S</router-link></li1>
     </ul>
     <label id = "secondmodbox"></label>
     <label id = "secondmod"> CS1010J </label>
