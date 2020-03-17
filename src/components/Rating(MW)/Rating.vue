@@ -80,13 +80,13 @@ textarea {
     padding: 10px 20px 0 20px;
 }
 
-.publishButton {
+button {
     display:flex;
     justify-content: space-around;
     margin: 200px auto;
     width: 257px;
     height: 50px;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-style: normal;
     font-weight: normal;
     background: #BA9977;
