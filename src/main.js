@@ -2,15 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import Routes from './routes.js'
 import Vuesax from 'vuesax'
-import 'vuesax/dist/vuesax.css' //Vuesax styles
+import 'vuesax/dist/vuesax.css' 
 import { BootstrapVue, IconsPlugin, BootstrapVueIcons} from 'bootstrap-vue'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-//Step 1 -- Import and use VueRouter
 import VueRouter from 'vue-router'
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://connectus-fda59.firebaseio.com'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)

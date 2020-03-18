@@ -1,7 +1,7 @@
 //Step 2 -- Define Routes
 import LandingPage from './components/LandingPage.vue'
-import SignIn from './components/SignIn.vue'
-import SignUp from './components/SignUp.vue'
+import SignIn from './components/auth/SignIn.vue'
+import SignUp from './components/auth/SignUp.vue'
 import PageContent from './components/PageContent.vue'
 import Modules from './components/Modules.vue'
 import Account from './components/Account.vue'

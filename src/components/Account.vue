@@ -3,7 +3,7 @@
     <b-container fluid class="bv-example-row">
      <b-row class="text-center">
      <b-col cols ="3">
-        <div class = "usr">Username: mingwei</div>
+        <div class = "usr">{{email}}</div>
         <div class = "yos">Year of Study: 2</div>
         <div class = "posts">Posts</div>
         <div class = "subs">Subscribers</div>
@@ -27,8 +27,32 @@
 
 
 <script>
-export default {
+import axios from '../axios-auth';
 
+export default {
+    data () {
+        return {
+            email: ''
+        }
+    },
+
+    //IMPORTANT (FROM CLARA TO CLARA)
+    created() {
+        axios.get('/users.json')
+        .then(res => {
+            console.log(res)
+            const data = res.data 
+            const users = []
+            for (let key in data) {
+                const user = data[key]
+                user.id = key
+                users.push(user)
+            }
+            console.log(users)
+            this.email = users[0].email
+        })
+        .catch(error => console.log(error))
+    },
 }
 </script>
 

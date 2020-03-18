@@ -29,6 +29,7 @@ import Subscriptions from '../components/Subscriptions.vue'
 import Featured from '../components/Featured.vue'
 
 export default {
+
   data:()=>({
     colorx:'rgb(201, 184, 167)'
   }),
