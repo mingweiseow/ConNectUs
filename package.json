@@ -8,12 +8,21 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.19.2",
+=======
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "bootstrap": "^4.4.1",
+>>>>>>> 5f5a322ce3ad90cede5975cc74835f26d975b9f8
     "bootstrap-vue": "^2.7.0",
     "core-js": "^3.6.4",
     "jquery": "^3.4.1",
+    "material-icons": "^0.3.1",
+    "materialize-css": "^1.0.0-rc.2",
     "vue": "^2.6.11",
-    "vue-star-rating": "^1.6.1"
+    "vue-router": "^3.1.6",
+    "vue-star-rating": "^1.6.1",
+    "vuesax": "^3.11.13"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
@@ -22,6 +31,8 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
