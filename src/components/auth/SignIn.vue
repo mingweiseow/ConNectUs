@@ -31,8 +31,8 @@
             <!-- need to update -->
             <div class="box-content">
               <form @submit.prevent="onsubmit" id="loginForm" class="form-login">
-                <input type="email" name="email" id="un" class="form-control" placeholder="Email">
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                <input type="email" name="email" id="un" class="form-control" placeholder="Email" v-model="email">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" v-model="password">
 
                 <!-- <div class="control-actions"> -->
                 <button type="submit" id="signin-btn" class="btn btn-primary btn-sm">Sign In</button>
@@ -86,6 +86,7 @@ export default {
         email: this.email,
         password: this.password
       }
+      
       console.log(formdata)
 
       axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDCvV9OsrafeXYzqD6Safn_R-B41BKRTM8', {
