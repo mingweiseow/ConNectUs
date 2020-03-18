@@ -176,7 +176,12 @@ img {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-  padding: 303px 65px 40px 65px;
+  padding: 170px 65px 170px 65px;
+  margin: 0 auto;
+}
+
+.signinbox {
+  margin: 0 auto;
 }
 
 .login-section h2 {

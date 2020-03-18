@@ -33,7 +33,7 @@
         <router-link to="/signin" tag="button" class="btn btn-primary btn-md" id="cancel-btn">Cancel</router-link>
 
         <!-- need to update button -->
-        <button v-on:click="submit" id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
+        <button type="submit" id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
         <!-- </div> -->
       </form>
     </div>
@@ -43,15 +43,13 @@
 
 <script>
 
+import axios from 'axios';
+//import axios from '../../axios-auth';
 //import database from '../firebase.js';
 
 export default {
   data() {
     return {
-      arrayOfObjects: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Alumni'],
-      object: {
-        name: 'Year of Study',
-      },
       // valid: false,
       username: '',
       email: '',
@@ -70,9 +68,9 @@ export default {
   },
 
   methods: {
-    methodToRunOnSelect(payload) {
-      this.object = payload;
-    },
+    // methodToRunOnSelect(payload) {
+    //   this.object = payload;
+    // },
     // submit() {
     //   if (this.$refs.form.validate()) {
     //     this.$store.dispatch('userJoin', {
@@ -86,11 +84,13 @@ export default {
         username: this.username,
         email: this.email,
         password: this.password,
-        confirm: this.password2,
+        password2: this.password2,
         year: this.year
       }
       console.log(formdata)
-      this.$store.dispatch('signup', formdata)
+      axios.post('https://connectus-fda59.firebaseio.com/users.json', formdata)
+        .then(res => console.log(res))
+        .catch(error => console.log(error))
     }
   }
 }
