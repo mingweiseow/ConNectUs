@@ -1,33 +1,19 @@
 <template lang="html">
   <div class="">
-     <vs-tabs>
-      <vs-tab label="Featured">
+     <vs-tabs :color= "colorx">
+      <vs-tab label="Featured" icon="star">
+        <featured></featured>
         <div class="con-tab-ejemplo">
         </div>
-        <vs-list>
-  <vs-list-header title="CS2040" color="#BA9977" class = "post-title" style = "font-family:Poppins"></vs-list-header>
-  <vs-list-item  class = 'info' title="Debugging Help" subtitle="posted on 4 Feb 2018 23:40 by user123" style = "font-family:Poppins">
-    <vs-avatar />
-      <div class="con-example-images">
-    <vs-images>
-      <vs-image :key="index" :src="`./assets/star.png${index}`" v-for="(image, index) in 9" />
-      <vs-image :key="index" :src="`./assets/forum.png${index}${index}`" v-for="(image, index) in 7" />
-    </vs-images>
-  </div>
-  </vs-list-item>
-    <vs-list-item  class = 'info' title="Assignment 5" subtitle="posted on 4 Feb 2018 23:40 by user123" style = "font-family:Poppins">
-  </vs-list-item>
-  <vs-list-header class = "post-title" title="BT2102" color="#BA9977" style = "font-family:Poppins"></vs-list-header>
-  <vs-list-item  class = 'info' title="Visualisation Issues" subtitle="posted on 5 Feb 2018 12:30 by user 647" style = "font-family:Poppins">
-  </vs-list-item>
-</vs-list>
+
       </vs-tab>
-      <vs-tab label="Subscriptions">
+      <vs-tab label="Subscriptions" icon="mail">
+        <subscriptions></subscriptions>
+
         <div class="con-tab-ejemplo">
-          Service
         </div>
       </vs-tab>
-      <vs-tab label="Saved">
+      <vs-tab label="Saved" icon ='save'>
         <div class="con-tab-ejemplo">
           login
         </div>
@@ -36,15 +22,42 @@
   </div>
 </template>
 
-<style lang="stylus">
+<script>
+
+import 'material-icons/iconfont/material-icons.css';
+import Subscriptions from '../components/Subscriptions.vue'
+import Featured from '../components/Featured.vue'
+
+export default {
+  data:()=>({
+    colorx:'rgb(201, 184, 167)'
+  }),
+  components: {
+    'subscriptions':Subscriptions,
+    'featured':Featured,
+  }
+}
+</script>
+
+
+<style lang="stylus" scoped>
+
+.vs-list--title {
+    font-weight: normal;
+}
 .post-title{
-  font-size 30px;
-  color black;
+  font-size 36px;
+  color white;
+  font-weight:100
+  background #C9B8A7;
 }
 
 .info{
   font-size 25px;
   color: black;
+  background rgba(196, 196, 196, 0.2)
+  height: 82px;
+
 
 }
   
