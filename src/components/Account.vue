@@ -1,5 +1,6 @@
 <template>
 <body id = "body">
+    <div class = "page">
     <b-container fluid class="bv-example-row">
      <b-row class="text-center">
      <b-col cols ="3">
@@ -22,6 +23,7 @@
     </b-col>
   </b-row>
   </b-container>
+  </div>
   </body>
 </template>
 
@@ -60,7 +62,10 @@ export default {
 
 #id{
     background-color: #E5E5E5;
+    width: 100%;
+    height: 100%;
 }
+
 
 .logout {
     position: absolute;
