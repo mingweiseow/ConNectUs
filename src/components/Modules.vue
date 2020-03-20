@@ -3,7 +3,7 @@
     <label id ="qn1">Know what you're looking for? </label>
     <label id = "search">
       <form id="fm1">
-          <input type="text" style="border: 3px solid #BA9977" placeholder="Search"/>      
+          <input type="text" style="border: 3px solid #BA9977" placeholder="Search Module"/>      
       </form>
     </label>
     <label id = "otherwise"> Otherwise, </label>
