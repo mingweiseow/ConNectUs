@@ -12,6 +12,7 @@
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 //import PageContent from './components/PageContent.vue'
+
 export default {
   name: 'App',
   data(){
@@ -19,11 +20,8 @@ export default {
           }
   },
   components: {
-    //Registering with a name
     'app-header':Header,
     'app-footer':Footer,
-    //Registering without a name
-    //PageContent
   }
 }
 </script>

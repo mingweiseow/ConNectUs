@@ -9,15 +9,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://connectus-fda59.firebaseio.com'
+import axios from 'axios'
+import Vuex from 'vuex'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(BootstrapVueIcons)
 Vue.use(Vuesax) 
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 

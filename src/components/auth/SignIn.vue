@@ -66,8 +66,8 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 // import sideimg from "../assets/signin.jpg"
-import axios from '../../axios-auth'
 
 export default {
   // name: 'login',
@@ -86,16 +86,17 @@ export default {
         email: this.email,
         password: this.password
       }
-      
-      console.log(formdata)
-
-      axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDCvV9OsrafeXYzqD6Safn_R-B41BKRTM8', {
-        email: formdata.email,
-        password: formdata.password,
-        returnSecureToken: true
-      })
-        .then(res => console.log(res))
-        .catch(error => console.log(error))
+      firebase.auth()
+              .signInWithEmailAndPassword(formdata.email, formdata.password)
+              .then(
+                user => {
+                  alert(`You Are Logged In as ${user.email}`);
+                  this.$router.go({path: this.$router.path});
+                },
+                err => {
+                  alert(err.message);
+                });
+      e.preventDefault();
     }
 
   //   login: function() {

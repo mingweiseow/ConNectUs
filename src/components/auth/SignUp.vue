@@ -13,7 +13,7 @@
     <div class="actualForm">
       <form @submit.prevent="onsubmit" id="signupForm" class="form-signup">
 
-        <input type="text" name="username" placeholder="Username" v-model="username">
+        <input type="text" name="name" placeholder="Name" v-model="name">
         <input type="email" name="email" placeholder="Email (NUS)" v-model="email">
         <input type="password" name="password" placeholder="Password" v-model="password">
         <input type="password" name="password2" placeholder="Confirm Password" v-model="password2">
@@ -42,14 +42,13 @@
 </template>
 
 <script>
-import axios from '../../axios-auth';
 //import database from '../firebase.js';
 
 export default {
   data() {
     return {
       // valid: false,
-      username: '',
+      name: '',
       email: '',
       password: '',
       password2: '',
@@ -79,20 +78,25 @@ export default {
     // }
     onsubmit () {
       const formdata = {
-        username: this.username,
+        name: this.name,
         email: this.email,
         password: this.password,
         password2: this.password2,
         year: this.year
       }
-      console.log(formdata)
-      axios.post('/accounts:signUp?key=AIzaSyDCvV9OsrafeXYzqD6Safn_R-B41BKRTM8', {
-        email: formdata.email,
-        password: formdata.password,
-        returnSecureToken: true
-      })
-        .then(res => console.log(res))
-        .catch(error => console.log(error))
+
+      firebase.auth()
+              .createUserWithEmailAndPassword(formdata.email, formdata.password)
+              .then(
+                user => {
+                  console.log(user);
+                  alert(`Account Created for ${user.email}`);
+                  this.$router.go({path: this.$router.path});
+                },
+                err => {
+                  alert(err.message);
+                });
+      e.preventDefault();
     }
   }
 }
