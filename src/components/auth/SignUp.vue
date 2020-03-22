@@ -42,7 +42,8 @@
 </template>
 
 <script>
-//import database from '../firebase.js';
+import database from '../../firebase.js';
+// import firebase from 'firebase';
 
 export default {
   data() {
@@ -85,7 +86,7 @@ export default {
         year: this.year
       }
 
-      firebase.auth()
+      database.auth()
               .createUserWithEmailAndPassword(formdata.email, formdata.password)
               .then(
                 user => {
@@ -96,7 +97,6 @@ export default {
                 err => {
                   alert(err.message);
                 });
-      e.preventDefault();
     }
   }
 }

@@ -66,7 +66,8 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import database from '../../firebase.js';
+// import firebase from 'firebase';
 // import sideimg from "../assets/signin.jpg"
 
 export default {
@@ -86,7 +87,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      firebase.auth()
+      database.auth()
               .signInWithEmailAndPassword(formdata.email, formdata.password)
               .then(
                 user => {
@@ -96,7 +97,6 @@ export default {
                 err => {
                   alert(err.message);
                 });
-      e.preventDefault();
     }
 
   //   login: function() {

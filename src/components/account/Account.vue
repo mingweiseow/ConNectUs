@@ -1,5 +1,5 @@
 <template>
-<body id = "body">
+<!-- <body id = "body">
     <div class = "page">
     <b-container fluid class="bv-example-row">
      <b-row class="text-center">
@@ -24,28 +24,167 @@
   </b-row>
   </b-container>
   </div>
-  </body>
+  </body> -->
+
+<div class="profile-page">
+
+    <div class="toggle">
+        <a class="posts">Your Posts</a>
+        <a class="saved">Saved Posts</a>
+    </div>
+
+    <div class="wrapper">
+        <div class="profile-info">
+            <h4 class="profile-display">Email: {{email}}</h4>
+            <h4 class="profile-display">Username: {{un}}</h4>
+            <h4 class="profile-display">Year of Study: {{yos}}</h4>
+            <h4 class="profile-display">No. of Posts: {{nop}}</h4>
+            <h4 class="profile-display">Subscribers: {{subs}}</h4>
+            <button id="signout-btn" class="btn btn-primary btn-sm">Sign Out</button>
+        </div>
+        
+        <div class="profile-content">
+            <!-- for each post: -->
+            <div class="post">
+                <span class="details" id="saved-title">Title: {{title}}</span>
+                <a class="btn btn-primary btn-md" role="button" id="view-post-btn">View</a>
+            </div>
+        </div>
+    </div>
+</div>
 </template>
 
 
 <script>
-//import axios from '../axios-auth';
-
-export default {
-    computed: {
-        email() {
-            return this.$store.getters.user.email
-        }
-    },
-    created() {
-        this.$store.dispatch('fetchUser')
-    }
-}
 </script>
 
 <style scoped>
+.toggle {
+    text-align: right;
+    padding-right: 80px;
+}
 
-#id{
+.toggle a {
+    margin: 20px;
+}
+
+.posts {
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 30px;
+    text-decoration-line: underline;
+}
+
+.saved {
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 30px;
+    text-decoration-line: underline;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    font-family: Poppins, Arial, serif;
+    text-align: center;
+    padding: 10px;
+}
+
+.profile-info {
+    background-color: #f5f5f5;
+    height: 550px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35px;
+    text-align: center;
+    padding-top: 175px;
+}
+
+/*if want to have profile image
+.profile-img {
+    height: 85px;
+    width: 85px;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}*/
+
+h4 {
+    font-size: 18px;
+    margin: 10px;
+}
+
+.profile-content {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35px;
+    height: 550px;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.post {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #f5f5f5;
+    margin-bottom: 35px;
+}
+
+.post span {
+    font-size: 18px;
+    margin: 10px;
+    padding: 5px;
+}
+
+#view-post-btn {
+    font-size: 12px;
+    height: 35px;
+    width: 60px;
+    background-color: #e2c0bb;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 6px;
+    border-radius: 4px; 
+    margin: 10px;
+    color: white;
+}
+
+#view-post-btn {
+  font-size: 15px;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  background-color: #C9B8A7; 
+  border: solid white;
+  margin: 10px;
+}
+
+#signout-btn {
+  font-size: 15px;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  background-color: #BA9977; 
+  border: solid white;
+  margin: 10px;
+}
+
+button:active {
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/*#id{
     background-color: #E5E5E5;
     width: 100%;
     height: 100%;
@@ -63,40 +202,28 @@ font-style: normal;
 font-weight: normal;
 font-size: 18px;
 line-height: 27px;
-
-/* identical to box height */
-
-
 color: #FFFFFF;
-
 }
+
 .module {
 width: 1012px;
 height: 771px;
-
-
 background: rgba(196, 196, 196, 0.1);
 }
 
 .more {
-    cursor: pointer;
+cursor: pointer;
 width: 93px;
 height: 27px;
-
-
 font-family: 'Poppins';
 font-style: normal;
 font-weight: normal;
 font-size: 18px;
 line-height: 27px;
-/* identical to box height */
-
 text-decoration-line: underline;
-
 color: #FFFFFF;
-
-
 }
+
 .a {
 position: absolute;
 cursor: pointer;
@@ -104,7 +231,6 @@ width: 103px;
 height: 30px;
 left: 385px;
 top: 150px;
-
 font-family: 'Poppins', sans-serif;
 font-style: normal;
 font-weight: normal;
@@ -115,32 +241,27 @@ color: #000000;
 }
 
 .b {
-    cursor: pointer;
+cursor: pointer;
 position: absolute;
 width: 121px;
 height: 30px;
 left: 543px;
 top: 150px;
-
 font-family: Poppins;
 font-style: normal;
 font-weight: normal;
 font-size: 20px;
 line-height: 30px;
-/* identical to box height */
-
 text-decoration-line: underline;
-
 color: #000000;
 }
 
 .c{
- position: absolute;
+position: absolute;
 width: 971px;
 height: 82px;
 left: 405px;
 top: 217px;
-
 background: #C9B8A7;
 }
 
@@ -150,18 +271,12 @@ width: 255px;
 height: 54px;
 left: 438px;
 top: 231px;
-
 font-family: Poppins;
 font-style: normal;
 font-weight: normal;
 font-size: 36px;
 line-height: 54px;
-/* identical to box height */
-
-
 color: #FFFFFF;
-
-
 }
 
 
@@ -176,7 +291,6 @@ font-style: normal;
 font-weight: normal;
 font-size: 20px;
 line-height: 30px;
-/* identical to box height */
 color: #000000;
 }
 
@@ -191,7 +305,6 @@ font-style: normal;
 font-weight: normal;
 font-size: 20px;
 line-height: 30px;
-/* identical to box height */
 color: #000000;
 
 }
@@ -207,7 +320,6 @@ font-style: normal;
 font-weight: normal;
 font-size: 20px;
 line-height: 30px;
-/* identical to box height */
 color: #000000;
 }
 
@@ -222,7 +334,6 @@ font-style: normal;
 font-weight: normal;
 font-size: 20px;
 line-height: 30px;
-/* identical to box height */
 color: #000000;
 
 }
@@ -233,8 +344,7 @@ width: 844px;
 height: 0px;
 left: 330px;
 top: 650px;
-
 border: 2px solid #E8E8E8;
 transform: rotate(-90deg);
-}
+}*/
 </style>
