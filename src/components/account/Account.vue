@@ -53,11 +53,8 @@ export default {
 
 
 .logout {
-    position: absolute;
 width: 100px;
 height: 40px;
-left: 215px;
-top: 1000px;
 background: #BA9977;
 border-radius: 5px;
 position: absolute;
@@ -74,22 +71,18 @@ color: #FFFFFF;
 
 }
 .module {
-position: absolute;
 width: 1012px;
 height: 771px;
-left: 385px;
-top: 190px;
+
 
 background: rgba(196, 196, 196, 0.1);
 }
 
 .more {
     cursor: pointer;
-    position: absolute;
 width: 93px;
 height: 27px;
-left: 1262px;
-top: 245px;
+
 
 font-family: 'Poppins';
 font-style: normal;
