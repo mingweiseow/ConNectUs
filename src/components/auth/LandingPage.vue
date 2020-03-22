@@ -57,7 +57,7 @@ export default {
 }
 */
 .tophalf {
-  background: url(../assets/landing.jpg);
+  background: url(../../assets/landing.jpg);
   background-size: 100%;
   height: 400px;
 }
