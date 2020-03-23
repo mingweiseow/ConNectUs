@@ -66,11 +66,11 @@ header{
     color: #444;
 }
 ul{
-    position: absolute;
+  position: absolute;
   width: 500px;
   height: 42px;
   left: 960px;
-  top: 280px;
+  top: 190px;
 
   text-decoration-line: underline;
 
@@ -105,7 +105,7 @@ h1{
   width: 262px;
   height: 90px;
   left: 32px;
-  top: 130px;
+  top: 90px;
 
   font-family: Poppins;
   font-style: normal;
@@ -118,20 +118,16 @@ h1{
 #moduleSummary {
   position: absolute;
   text-align: center;
-  width: 240.17px;
-  height: 47.04px;
-  left: 80.66px;
-  top: 284.96px;
 
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  line-height: 45px;
+  font-size: 28px;
+  line-height: 38px;
   width: 301px;
-  height: 56px;
+  height: 50px;
   left: 45px;
-  top: 276px;
+  top: 200px;
 
   background: #C9B8A7;
   border: 3px solid #C9B8A7;
@@ -146,7 +142,7 @@ h1{
   width: 95.89px;
   height: 35.45px;
   left: 449.95px;
-  top: 132.36px;
+  top: 90px;
 
   font-family: Poppins;
   font-style: normal;
@@ -162,7 +158,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 402px;
-  top: 184.36px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -172,7 +168,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 444.62px;
-  top: 184.36px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -182,7 +178,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 487.24px;
-  top: 184.36px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -192,7 +188,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 529.86px;
-  top: 184.36px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -202,7 +198,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 572.48px;
-  top: 184.36px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -212,7 +208,7 @@ h1{
   width: 269.57px;
   height: 35.45px;
   left: 722.71px;
-  top: 132.36px;
+  top: 90px;
 
   font-family: Poppins;
   font-style: normal;
@@ -228,7 +224,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 730px;
-  top: 184.36px;
+  top: 120px;
 
   border: 4px solid #BA9977;
   box-sizing: border-box;
@@ -239,7 +235,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 772.62px;
-  top: 184.36px;
+  top: 120px;
 
   border: 4px solid #BA9977;
   box-sizing: border-box;
@@ -250,7 +246,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 815.24px;
-  top: 184.36px;
+  top: 120px;
 
   border: 4px solid #BA9977;
   box-sizing: border-box;
@@ -261,7 +257,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 857.86px;
-  top: 184.36px;
+  top: 120px;
 
   border: 4px solid #BA9977;
   box-sizing: border-box;
@@ -272,7 +268,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 900.48px;
-  top: 184.36px;
+  top: 120px;
 
   border: 4px solid #BA9977;
   box-sizing: border-box;
@@ -283,7 +279,7 @@ h1{
   width: 79.91px;
   height: 35.45px;
   left: 1176.62px;
-  top: 130px;
+  top: 90px;
 
   font-family: Poppins;
   font-style: normal;
@@ -299,7 +295,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 1121.21px;
-  top: 182px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -309,7 +305,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 1163.83px;
-  top: 182px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -319,7 +315,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 1206.45px;
-  top: 182px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -329,7 +325,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 1249.07px;
-  top: 182px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -339,7 +335,7 @@ h1{
   width: 21.31px;
   height: 20px;
   left: 1291.69px;
-  top: 182px;
+  top: 120px;
 
   background: #BA9977;
 }
@@ -360,7 +356,7 @@ h1{
   width: 1350px;
   height: 103px;
   left: 45px;
-  top: 566px;
+  top: 430px;
   color: #FFFFFF;
 }
 
@@ -380,7 +376,7 @@ h1{
   width: 1350px;
   height: 103px;
   left: 45px;
-  top: 718px;
+  top: 560px;
   color: #FFFFFF;
 }
 
@@ -389,7 +385,7 @@ h1{
   width: 700px;
   height: 45px;
   left: 346px;
-  top: 890px;
+  top: 700px;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
@@ -404,7 +400,7 @@ h1{
   width: 301px;
   height: 56px;
   left: 575px;
-  top: 980px;
+  top: 750px;
 
   background: #C9B8A7;
   border-radius: 5px;
@@ -415,7 +411,7 @@ h1{
   width: 240.17px;
   height: 90px;
   left: 610px;
-  top: 990px;
+  top: 760px;
 
   font-family: Poppins;
   font-style: normal;
@@ -431,9 +427,9 @@ h1{
 #summarybox{
   position: absolute;
   width: 1350px;
-  height: 193px;
+  height: 150px;
   left: 45px;
-  top: 332px;
+  top: 250px;
 
   background: #E8E8E8;
   border-radius: 5px;
@@ -444,7 +440,7 @@ h1{
   width: 1311px;
   height: 102px;
   left: 65px;
-  top: 378px;
+  top: 275px;
 
   font-family: Poppins;
   font-style: normal;
@@ -481,4 +477,6 @@ img{
   width:100px;
   height:100px;
 }
+
+
 </style>
