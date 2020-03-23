@@ -1,6 +1,6 @@
 <template>
   <div id="app"> 
-    <h1> conNectUs </h1>  
+    <!--<h1> conNectUs </h1> -->
     <app-header v-bind:title="msg"></app-header>
     <router-view></router-view>
     <app-footer></app-footer>
