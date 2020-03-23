@@ -1,70 +1,88 @@
 <template>
-  <div class="headerStyle">
-        <nav>
-          <h1>{{ title }}</h1>
-          <ul>
-             <li><router-link to="/home" exact>Home</router-link></li>
-             <li><router-link to="/modules" exact>Modules</router-link></li>
-             <li><router-link to="/account" exact>Account</router-link></li>
-          </ul>
-        </nav>
-  </div>
+    <body>
+        <header id='Header'>
+            <img class="logo" src="../assets/logo.svg" alt ="logo" height="100" width="100">
+            <nav>
+                <ul class="nav__links">
+                    <li><router-link to="/home" exact><a id = "navi" href="#">About</a></router-link></li>
+                    <li><router-link to="/modules" exact><a id ="navi" href ="#">Modules</a></router-link></li>
+                    <li><router-link to="/account" exact><a id="navi" href = "#">Account</a></router-link></li>
+                </ul>
+            </nav>
+        </header>
+    </body>
+    
 </template>
 
 <script>
 export default {
-  
-  data(){
-    return{
-        msg: 'Modules Individual Page'
-        }
-  },
-  props:{
-    title:{
-      type:String
-    }
-  }
+    
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-header{
-    background:rgb(255, 255, 255);
-    padding:6px;
-    border-style: solid;
-    border-color:rgb(255, 255, 255);
-    border-width: 2px;
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+#Header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 25px 0px 25px;
 }
-h1{
-    color:ivory;
-    background:  ivory;
-    font-size: 30px;
+
+body {
+    margin:0;
 }
-nav{
-    background: rgb(255, 255, 255);
-    padding: 14px 0;
-    margin-bottom: 40px;
+li, a, button {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000
 }
-.router-link-active{
-    background: ivory;
-    color: #444;
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+    width: 100%;
 }
-ul{
-    list-style-type: none;
-    text-align: right;
-    margin: 0;
+
+.logo {
+    cursor:pointer;
+    margin-right: auto;
+    width: 200px;
 }
-li{
-    background-color:gray;
+
+.nav__links {
+    list-style:none;
+}
+
+.nav__links li {
     display: inline-block;
-    margin: 0 10px;
+    padding: 0px 20px;
 }
-li a{
-  
-  font-size: 18px;
-  color:ivory;
-    
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: rgba(108, 122, 137, 1)
+}
+
+button {
+    margin-left: 20px;
+    padding: 12px 30px;
+    background-color: rgba(189, 195, 199, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: rgba(189, 195, 199, 0.8)
+
+
 }
 </style>
-
