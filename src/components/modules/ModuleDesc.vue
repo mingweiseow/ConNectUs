@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <label id = "moduleCode"> ~CS1010S </label> 
-    <label id = "moduleSummary"> Module Summary </label> 
+  <div id = "ModuleDesc">
+    <modreviewheader></modreviewheader>
+    <modsummary></modsummary>
+    <modoverview></modoverview>
+    <modreview></modreview>
+    <modsubthread></modsubthread>
+    <samples></samples>
     <label id = "difficulty"> Difficulty: </label> 
     <label id = "difficulty1"></label>
     <label id = "difficulty2"></label>
@@ -20,52 +24,51 @@
     <label id = "overall3"></label>
     <label id = "overall4"></label>
     <label id = "overall5"></label>
-    <label id = "reviews"> Reviews </label>
-    <label id = "subthreads"> Subthreads </label>
-    <label id = "questionmod"> Still unsure whether or not to take this module? </label>
-    <label id = "samplebox"></label>
-    <label id = "samples"> Download Samples </label>
-    
-    <ul>
-      <li1><router-link to="/makereview" exact>Make a Review</router-link></li1>
-      <li1><router-link to="/askquestion" exact>Ask a Question</router-link></li1>
-      </ul>
-    <label id = "summarybox"></label>
-    <label id ="summary"> This module introduces the fundamental concepts of problem solving by computing and programming using an imperative programming language. It is the first and foremost introductory course to computing and is equivalent to CS1010 and CS1010E Programming Methodology. This module is appropriate for FoS students. </label>
   </div>
 </template>
 
 
+
 <script>
+import ModReviewHeader from './ModReviewHeader.vue'
+import ModSummary from './ModSummary.vue'
+import ModOverview from './ModOverview.vue'
+import ModReview from './ModReview.vue'
+import ModSubthread from './ModSubthread.vue'
+import Samples from './Samples.vue'
+
+
 export default {
-  data(){
-    return{
-      
-        }
-  },
-  props:{
-    title:{
-      type:String
-    }
-  }
+  data(){},
+    components: {
+      'modreviewheader': ModReviewHeader,
+      'modsummary': ModSummary,
+      'modoverview': ModOverview,
+      'modreview': ModReview,
+      'modsubthread': ModSubthread,
+      'samples': Samples,
+     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-header{
-    background:rgb(67, 63, 122);
-    padding:10px;
-    border-style: solid;
-    border-color:black;
-    border-width: 2px;
-}
+
 
 .router-link-active{
     background: ivory;
     color: #444;
 }
-ul{
+/*header{
+    background:rgb(67, 63, 122);
+    padding:10px;
+    border-style: solid;
+    border-color:black;
+    border-width: 2px;
+}*/
+
+
+/*ul{
   position: absolute;
   width: 500px;
   height: 42px;
@@ -99,43 +102,10 @@ li1 a{
 h1{
     color:ivory
 }
+*/
 
-#moduleCode{
-  position: absolute;
-  width: 262px;
-  height: 90px;
-  left: 32px;
-  top: 90px;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 60px;
-  line-height: 90px;
-  color: #BA9977;
-}
 
-#moduleSummary {
-  position: absolute;
-  text-align: center;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 28px;
-  line-height: 38px;
-  width: 301px;
-  height: 50px;
-  left: 45px;
-  top: 200px;
-
-  background: #C9B8A7;
-  border: 3px solid #C9B8A7;
-  box-sizing: border-box;
-  border-radius: 5px;
-
-  color: #FFFFFF;
-}
 
 #difficulty{
   position: absolute;
@@ -340,7 +310,7 @@ h1{
   background: #BA9977;
 }
 
-#reviews{
+/*#reviews{
   position: absolute;
   text-align: center;
   font-family: Poppins;
@@ -351,16 +321,16 @@ h1{
   padding:10px;
   border-style: solid;
   /*border-color:black;*/
-  border-width: 2px;
+  /*border-width: 2px;
   background: #BA9977;
   width: 1350px;
   height: 103px;
   left: 45px;
   top: 430px;
   color: #FFFFFF;
-}
+}*/
 
-#subthreads{
+/*#subthreads{
   position: absolute;
   text-align: center;
   font-family: Poppins;
@@ -371,16 +341,16 @@ h1{
   padding:10px;
   border-style: solid;
   /*border-color:black;*/
-  border-width: 2px;
+  /*border-width: 2px;
   background: #BA9977;
   width: 1350px;
   height: 103px;
   left: 45px;
   top: 560px;
   color: #FFFFFF;
-}
+}*/
 
-#questionmod {
+/*#questionmod {
   position: absolute;
   width: 700px;
   height: 45px;
@@ -394,8 +364,8 @@ h1{
   text-align: right;
   color: #BA9977;
 
-}
-#samplebox{
+}*/
+/*#samplebox{
   position: absolute;
   width: 301px;
   height: 56px;
@@ -421,10 +391,10 @@ h1{
 
   color: #FFFFFF;
 
-}
+}*/
 
 
-#summarybox{
+/*#summarybox{
   position: absolute;
   width: 1350px;
   height: 150px;
@@ -449,9 +419,9 @@ h1{
   line-height: 33px;
 
   color: #000000;
-}
+}*/
 
-
+/*
 #itemsList{
     width: 100%;
     max-width: 1200px;
@@ -476,7 +446,7 @@ li{
 img{
   width:100px;
   height:100px;
-}
+}*/
 
 
 </style>
