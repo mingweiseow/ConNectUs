@@ -30,12 +30,12 @@
 
             <!-- need to update -->
             <div class="box-content">
-              <form @submit.prevent="onsubmit" id="loginForm" class="form-login">
+              <form id="loginForm" class="form-login">
                 <input type="email" name="email" id="un" class="form-control" placeholder="Email" v-model="email">
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" v-model="password">
 
                 <!-- <div class="control-actions"> -->
-                <button type="submit" id="signin-btn" class="btn btn-primary btn-sm">Sign In</button>
+                <button v-on:click="login" id="signin-btn" class="btn btn-primary btn-sm">Sign In</button>
                 <!-- </div> -->
               </form>
 
@@ -71,38 +71,28 @@ import database from '../../firebase.js';
 // import sideimg from "../assets/signin.jpg"
 
 export default {
-  // name: 'login',
+  name: 'login',
   data() {
     return {
-      // image: sideimg,
-      // desc1: "We are a platform that aims to provide students with as much information on modules as possible.",
-      // desc2: "Sign up or Log in in order to view or provide such information.",
       email: '',
-      password: ''
+      password: '',
     }
   },
-  methods: {
-    onsubmit () {
-      const formdata = {
-        email: this.email,
-        password: this.password
-      }
-      database.auth()
-              .signInWithEmailAndPassword(formdata.email, formdata.password)
-              .then(
-                user => {
-                  alert(`You Are Logged In as ${user.email}`);
-                  this.$router.go({path: this.$router.path});
-                },
-                err => {
-                  alert(err.message);
-                });
-    }
 
-  //   login: function() {
-  //     this.$router.replace('account');
-  //   }
-  }
+  methods: {
+    login: function(e) {
+      database.auth().signInWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          alert(`You are logged in as ${user.email}`);
+          this.$router.push('/account');
+        },
+        err => {
+          alert(err.message);
+        });
+
+      e.preventDefault();
+    }
+  },
 }
 </script>
 

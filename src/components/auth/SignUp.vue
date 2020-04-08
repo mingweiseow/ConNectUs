@@ -11,7 +11,7 @@
     </div>
 
     <div class="actualForm">
-      <form @submit.prevent="onsubmit" id="signupForm" class="form-signup">
+      <form id="signupForm" class="form-signup">
 
         <input type="text" name="name" placeholder="Name" v-model="name">
         <input type="email" name="email" placeholder="Email (NUS)" v-model="email">
@@ -29,11 +29,10 @@
           </select>
         </div>
         
-        <!-- <div class="control-signups"> -->
         <router-link to="/signin" tag="button" class="btn btn-primary btn-md" id="cancel-btn">Cancel</router-link>
 
         <!-- need to update button -->
-        <button type="submit" id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
+        <button v-on:click="register" id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
         <!-- </div> -->
       </form>
     </div>
@@ -46,26 +45,30 @@ import database from '../../firebase.js';
 // import firebase from 'firebase';
 
 export default {
+  name: 'register',
   data() {
     return {
-      // valid: false,
       name: '',
       email: '',
       password: '',
       password2: '',
       year: '',
-      // emailRules: [
-      //   v => !!v || 'E-mail is required',
-      //   v => /.+@.+/.test(v) || 'E-mail must be valid'
-      // ],
-      // passwordRules: [
-      //   v => !!v || 'Password is required',
-      //   v => v.length >= 6 || 'Password must be greater than 6 characters'
-      // ]
     }
   },
 
   methods: {
+    register: function(e) {
+      database.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          alert(`Account created for ${user.email}`);
+          this.$router.push('/account');
+        },
+        err => {
+          alert(err.message);
+        });
+
+      e.preventDefault();
+    }
     // methodToRunOnSelect(payload) {
     //   this.object = payload;
     // },
@@ -77,27 +80,27 @@ export default {
     //     });
     //   }
     // }
-    onsubmit () {
-      const formdata = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password2: this.password2,
-        year: this.year
-      }
+    // onsubmit () {
+    //   const formdata = {
+    //     name: this.name,
+    //     email: this.email,
+    //     password: this.password,
+    //     password2: this.password2,
+    //     year: this.year
+    //   }
 
-      database.auth()
-              .createUserWithEmailAndPassword(formdata.email, formdata.password)
-              .then(
-                user => {
-                  console.log(user);
-                  alert(`Account Created for ${user.email}`);
-                  this.$router.go({path: this.$router.path});
-                },
-                err => {
-                  alert(err.message);
-                });
-    }
+    //   database.auth()
+    //           .createUserWithEmailAndPassword(formdata.email, formdata.password)
+    //           .then(
+    //             user => {
+    //               console.log(user);
+    //               alert(`Account Created for ${user.email}`);
+    //               this.$router.go({path: this.$router.path});
+    //             },
+    //             err => {
+    //               alert(err.message);
+    //             });
+    // }
   }
 }
 </script>
