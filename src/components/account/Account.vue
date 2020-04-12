@@ -56,6 +56,42 @@
 
 
 <script>
+import database from '../../firebase.js';
+//import Signup from '../auth/SignUp.vue';
+export default {
+  data() {
+    return {
+        email: '',
+        un: '',
+        yos: ''
+    }
+  },
+
+ // components: {
+   //   'Signup': Signup
+  //},
+
+  created: {
+      function() {
+         database.collection('Users').doc("CYQhtjvEUxqAptFwsckJ").get().then((querySnapShot)=>{
+
+             let user = {}
+              querySnapShot.forEach(doc=>{
+                  user=doc.data()
+                  //user.show=false
+                  this.email = user.email.value,
+                  this.un = user.name.value,
+                  this.yos = user.year_of_study.value
+                  this.nop = user.num_post.value
+                  this.subs = user.subs.value
+                  console.log(doc.data())
+
+              })
+          })
+          
+      }
+    }
+  }
 </script>
 
 <style scoped>
