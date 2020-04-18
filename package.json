@@ -8,12 +8,29 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@fortawesome/fontawesome-free": "^5.13.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.11.0",
     "core-js": "^3.6.5",
     "firebase": "^7.14.0",
+=======
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@google-cloud/firestore": "^3.7.4",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.7.0",
+    "core-js": "^3.6.4",
+<<<<<<< HEAD
+    "dns": "^0.2.2",
+    "firebase": "^7.14.0",
+    "http2": "^3.3.7",
+    "install": "^0.13.0",
+=======
+    "firebase": "^7.14.0",
+>>>>>>> 7097a5e181d93d38b20af1241d1b9e8fc2680369
+>>>>>>> c6085950489925bc4d893c693e38178206d3f758
     "jquery": "^3.4.1",
     "material-icons": "^0.3.1",
     "materialize-css": "^1.0.0",
