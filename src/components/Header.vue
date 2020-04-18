@@ -15,9 +15,26 @@
 </template>
 
 <script>
-export default {
+// import firebase from 'firebase';
+
+// export default {
+//     name: 'header',
+//     data() {
+//         return {
+//             isLoggedIn: false,
+//             currentUser: false
+//         }
+//     },
+
+//     methods: {
+//         logout: function() {
+//             firebase.auth().signOut().then(() => {
+//                 this.$router.push('/signin')
+//             });
+//         }
+//     }
     
-}
+// }
 </script>
 
 <style scoped>

@@ -9,32 +9,19 @@
 </template>
 
 <script>
-export default {
+// export default {
   
-  data(){
-    return{
+//   data(){
+//     return{
         
         
-        }
-  }
-}
+//         }
+//   }
+// }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-footer{
-    /*padding:10px;
-    border-style: solid;
-    border-color:black;
-    border-width: 2px;
-    position: absolute;
-    width: 1350px;
-    height: 103px;
-    left: 45px;
-    top: 566px;
-    background: #BA9977;
-    border-radius: 5px;*/
-}
 p{
   text-align: center;
   color: #FFFFFF;

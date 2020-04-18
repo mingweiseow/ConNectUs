@@ -11,7 +11,7 @@
     </div>
 
     <div class="actualForm">
-      <form @submit.prevent="onsubmit" id="signupForm" class="form-signup">
+      <form @submit.prevent="register" id="signupForm" class="form-signup">
 
         <input type="text" name="name" placeholder="Name" v-model="name">
         <input type="email" name="email" placeholder="Email (NUS)" v-model="email">
@@ -29,11 +29,10 @@
           </select>
         </div>
         
-        <!-- <div class="control-signups"> -->
         <router-link to="/signin" tag="button" class="btn btn-primary btn-md" id="cancel-btn">Cancel</router-link>
 
         <!-- need to update button -->
-        <button type="submit" id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
+        <button id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
         <!-- </div> -->
       </form>
     </div>
@@ -43,60 +42,46 @@
 
 <script>
 import database from '../../firebase.js';
-// import firebase from 'firebase';
+import firebase from 'firebase';
 
 export default {
-  data() {
+  name: 'register',
+  data: function() {
     return {
-      // valid: false,
       name: '',
       email: '',
       password: '',
       password2: '',
       year: '',
-      // emailRules: [
-      //   v => !!v || 'E-mail is required',
-      //   v => /.+@.+/.test(v) || 'E-mail must be valid'
-      // ],
-      // passwordRules: [
-      //   v => !!v || 'Password is required',
-      //   v => v.length >= 6 || 'Password must be greater than 6 characters'
-      // ]
     }
   },
 
   methods: {
-    // methodToRunOnSelect(payload) {
-    //   this.object = payload;
-    // },
-    // submit() {
-    //   if (this.$refs.form.validate()) {
-    //     this.$store.dispatch('userJoin', {
-    //       email: this.email,
-    //       password: this.password
-    //     });
-    //   }
-    // }
-    onsubmit () {
-      const formdata = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password2: this.password2,
-        year: this.year
-      }
+    register: function() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          alert(`Account created for ${user.email}`);
+          this.$router.push('/home');
+        },
+        err => {
+          alert(err.message);
+        });
 
-      database.auth()
-              .createUserWithEmailAndPassword(formdata.email, formdata.password)
-              .then(
-                user => {
-                  console.log(user);
-                  alert(`Account Created for ${user.email}`);
-                  this.$router.go({path: this.$router.path});
-                },
-                err => {
-                  alert(err.message);
-                });
+      database.collection('Users').add({
+        email: this.email,
+        modules: [],
+        name: this.name,
+        num_post: 0,
+        password: this.password,
+        subs: 0,
+        subscribers: [],
+        year_of_study: this.year
+      })
+      .then(docRef => {
+        console.log('Client added: ', docRef.id)
+        this.$router.push('/')
+      })
+      .catch(error => console.log(error))  
     }
   }
 }

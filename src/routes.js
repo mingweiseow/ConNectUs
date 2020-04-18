@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+//import firebase from 'firebase';
 
 //pages
 import LandingPage from './components/auth/LandingPage.vue'
@@ -13,18 +14,6 @@ import AskQuestion from './components/Subthread(MW)/SubthreadPage.vue'
 import Account from './components/account/Account.vue'
 
 Vue.use(Router);
-
-// export default [
-// 	{ path: '/', component: LandingPage},
-// 	{ path: '/signin', component: SignIn},
-//     { path: '/signup', component: SignUp},
-//     { path: '/home',component:Home},
-//     { path: '/summary', component: ModuleDesc},
-//     { path: '/modules', component: Modules},
-//     { path: '/account', component: Account},
-//     { path: '/review', component: MakeReview},
-//     { path: '/ask', component: AskQuestion}
-// ]
 
 export default new Router({
 	routes: [
@@ -43,105 +32,115 @@ export default new Router({
 
 // let router = new Router({
 // 	routes: [
-// 		{
-// 			path: '/',
-// 			name: 'welcome',
+// 		{ 
+// 			path: '/', 
+// 			name: 'welcome', 
 // 			component: LandingPage,
 // 			meta: {
 // 				requiresGuest: true
 // 			}
 // 		},
-
-// 		{
-// 			path: '/signin',
-// 			name: 'sign-in',
+// 		{ 
+// 			path: '/signin', 
+// 			name: 'sign-in', 
 // 			component: SignIn,
 // 			meta: {
 // 				requiresGuest: true
 // 			}
 // 		},
-
-// 		{
-// 			path: '/signup',
-// 			name: 'sign-up',
-// 			component: LandingPage,
+// 		{ 
+// 			path: '/signup', 
+// 			name: 'sign-up', 
+// 			component: SignUp,
 // 			meta: {
 // 				requiresGuest: true
 // 			}
 // 		},
-
-// 		{
-// 			path: '/home',
-// 			name: 'home',
+// 		{ 
+// 			path: '/home', 
+// 			name: 'home', 
 // 			component: Home,
 // 			meta: {
 // 				requiresAuth: true
 // 			}
 // 		},
-
-// 		{
-// 			path: '/modules',
-// 			name: 'modules',
+// 		{ 
+// 			path: '/summary', 
+// 			name: 'summary', 
+// 			component: ModuleDesc,
+// 			meta: {
+// 				requiresAuth: true
+// 			}
+// 		},
+// 		{ 
+// 			path: '/modules', 
+// 			name: 'modules', 
 // 			component: Modules,
 // 			meta: {
 // 				requiresAuth: true
 // 			}
 // 		},
-
-// 		{
-// 			path: '/review',
-// 			name: 'review',
+// 		{ 
+// 			path: '/account', 
+// 			name: 'account', 
+// 			component: Account,
+// 			meta: {
+// 				requiresAuth: true
+// 			}
+// 		},
+// 		{ 
+// 			path: '/makereview', 
+// 			name: 'review', 
 // 			component: MakeReview,
 // 			meta: {
 // 				requiresAuth: true
 // 			}
 // 		},
-
-// 		{
-// 			path: '/ask',
-// 			name: 'ask',
+// 		{ 
+// 			path: '/askquestion', 
+// 			name: 'ask', 
 // 			component: AskQuestion,
 // 			meta: {
 // 				requiresAuth: true
 // 			}
 // 		}
-// 	]
-// })
+// 	],
+// 	mode: 'history'
+// });
 
 // router.beforeEach((to, from, next) => {
-//   // Check for requiresAuth guard
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     // Check if NO logged user
-//     if (!firebase.auth().currentUser) {
-//       // Go to login
-//       next({
-//         path: '/login',
-//         query: {
-//           redirect: to.fullPath
-//         }
-//       });
-//     } else {
-//       // Proceed to route
-//       next();
-//     }
-//   } else if (to.matched.some(record => record.meta.requiresGuest)) {
-//     // Check if NO logged user
-//     if (firebase.auth().currentUser) {
-//       // Go to login
-//       next({
-//         path: '/',
-//         query: {
-//           redirect: to.fullPath
-//         }
-//       });
-//     } else {
-//       // Proceed to route
-//       next();
-//     }
-//   } else {
-//     // Proceed to route
-//     next();
-//   }
+// 	//check for required auth guard
+// 	if (to.matched.some(record => record.meta.requiresAuth)) {
+// 		//check if NOT logged in 
+// 		if (!firebase.auth().currentUser) {
+// 			//go to login page
+// 			next({
+// 				path: '/login',
+// 				query: {
+// 					redirect: to.fullPath
+// 				}
+// 			});
+// 		} else {
+// 			//proceed to the route
+// 			next();
+// 		}
+// 	} else if(to.matched.some(record => record.meta.requiresGuest)) {
+// 		//check if logged in 
+// 		if (firebase.auth().currentUser) {
+// 			//go to login page
+// 			next({
+// 				path: '/home',
+// 				query: {
+// 					redirect: to.fullPath
+// 				}
+// 			});
+// 		} else {
+// 			//proceed to the route
+// 			next();
+// 		}
+// 	} else {
+// 		next();
+// 	}
 // });
 
 // export default router;

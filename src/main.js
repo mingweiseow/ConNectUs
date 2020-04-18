@@ -11,6 +11,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
 //import axios from 'axios'
 import Vuex from 'vuex'
+// import firebase from 'firebase';
+// import database from './firebase.js';
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
@@ -26,6 +28,7 @@ Vue.config.productionTip = false
 //   routes: Routes,
 //   mode: 'history'
 // });
+
 
 new Vue({
   render: h => h(App),

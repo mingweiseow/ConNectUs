@@ -30,12 +30,12 @@
 
             <!-- need to update -->
             <div class="box-content">
-              <form @submit.prevent="onsubmit" id="loginForm" class="form-login">
+              <form @submit.prevent="login" id="loginForm" class="form-login">
                 <input type="email" name="email" id="un" class="form-control" placeholder="Email" v-model="email">
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" v-model="password">
 
                 <!-- <div class="control-actions"> -->
-                <button type="submit" id="signin-btn" class="btn btn-primary btn-sm">Sign In</button>
+                <button id="signin-btn" class="btn btn-primary btn-sm">Sign In</button>
                 <!-- </div> -->
               </form>
 
@@ -66,42 +66,33 @@
 </template>
 
 <script>
-import database from '../../firebase.js';
-// import firebase from 'firebase';
+//import database from '../../firebase.js';
+import firebase from 'firebase';
 // import sideimg from "../assets/signin.jpg"
 
 export default {
-  // name: 'login',
-  data() {
+  name: 'login',
+  data: function() {
     return {
-      // image: sideimg,
-      // desc1: "We are a platform that aims to provide students with as much information on modules as possible.",
-      // desc2: "Sign up or Log in in order to view or provide such information.",
+      name: '',
       email: '',
-      password: ''
+      password: '',
+      password2: '',
+      year: ''
     }
   },
-  methods: {
-    onsubmit () {
-      const formdata = {
-        email: this.email,
-        password: this.password
-      }
-      database.auth()
-              .signInWithEmailAndPassword(formdata.email, formdata.password)
-              .then(
-                user => {
-                  alert(`You Are Logged In as ${user.email}`);
-                  this.$router.go({path: this.$router.path});
-                },
-                err => {
-                  alert(err.message);
-                });
-    }
 
-  //   login: function() {
-  //     this.$router.replace('account');
-  //   }
+  methods: {
+    login: function() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          alert(`You are logged in as ${user.email}`);
+          this.$router.push('/home');
+        },
+        err => {
+          alert(err.message);
+        });
+    }
   }
 }
 </script>
