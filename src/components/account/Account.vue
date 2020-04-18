@@ -46,7 +46,7 @@
         <div class="profile-content">
             <!-- for each post: -->
             <div class="post">
-                <span class="details" id="saved-title">Title: {{title}}</span>
+                <span class="details" id="saved-title">Title: 'title'</span>
                 <a class="btn btn-primary btn-md" role="button" id="view-post-btn">View</a>
             </div>
         </div>
@@ -56,7 +56,52 @@
 
 
 <script>
+import database from '../../firebase.js';
+//import Signup from '../auth/SignUp.vue';
+export default {
+  data() {
+    return {
+      email: "",
+      nop: "",
+      yos: "",
+      un :'',
+      subs:  ''
+    };
+  },
+  methods: {
+    fetchItems: function () {
+      database
+        .collection("Users")
+        .get()
+        .then((querySnapshot) => {
+          let user = [];
+          querySnapshot.forEach((doc) => {
+            user.push(doc.data());
+            //console.log(doc.data());
+            this.email = user[0].email;
+            this.un = user[0].name;
+            this.yos = user[0].year_of_study;
+            this.nop = user[0].num_post;
+            this.subs = user[0].subs;
+            //console.log(user);
+          });
+        })
+        .catch((err) => {
+          console.log("Error getting documents", err);
+        });
+    },
+  },
+
+  // components: {
+  //   'Signup': Signup
+  //},
+
+  created() {
+    this.fetchItems();
+  },
+};
 </script>
+
 
 <style scoped>
 .toggle {
