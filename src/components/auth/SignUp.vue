@@ -11,7 +11,7 @@
     </div>
 
     <div class="actualForm">
-      <form id="signupForm" class="form-signup">
+      <form @submit.prevent="register" id="signupForm" class="form-signup">
 
         <input type="text" name="name" placeholder="Name" v-model="name">
         <input type="email" name="email" placeholder="Email (NUS)" v-model="email">
@@ -32,7 +32,7 @@
         <router-link to="/signin" tag="button" class="btn btn-primary btn-md" id="cancel-btn">Cancel</router-link>
 
         <!-- need to update button -->
-        <button v-on:click="register" id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
+        <button id="signup-btn" class="btn btn-primary btn-md">Sign Up</button>
         <!-- </div> -->
       </form>
     </div>
@@ -42,11 +42,11 @@
 
 <script>
 import database from '../../firebase.js';
-// import firebase from 'firebase';
+import firebase from 'firebase';
 
 export default {
   name: 'register',
-  data() {
+  data: function() {
     return {
       name: '',
       email: '',
@@ -57,50 +57,32 @@ export default {
   },
 
   methods: {
-    register: function(e) {
-      database.auth().createUserWithEmailAndPassword(this.email, this.password)
+    register: function() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(user => {
           alert(`Account created for ${user.email}`);
-          this.$router.push('/account');
+          this.$router.push('/home');
         },
         err => {
           alert(err.message);
         });
 
-      e.preventDefault();
+      database.collection('Users').add({
+        email: this.email,
+        modules: [],
+        name: this.name,
+        num_post: 0,
+        password: this.password,
+        subs: 0,
+        subscribers: [],
+        year_of_study: this.year
+      })
+      .then(docRef => {
+        console.log('Client added: ', docRef.id)
+        this.$router.push('/')
+      })
+      .catch(error => console.log(error))  
     }
-    // methodToRunOnSelect(payload) {
-    //   this.object = payload;
-    // },
-    // submit() {
-    //   if (this.$refs.form.validate()) {
-    //     this.$store.dispatch('userJoin', {
-    //       email: this.email,
-    //       password: this.password
-    //     });
-    //   }
-    // }
-    // onsubmit () {
-    //   const formdata = {
-    //     name: this.name,
-    //     email: this.email,
-    //     password: this.password,
-    //     password2: this.password2,
-    //     year: this.year
-    //   }
-
-    //   database.auth()
-    //           .createUserWithEmailAndPassword(formdata.email, formdata.password)
-    //           .then(
-    //             user => {
-    //               console.log(user);
-    //               alert(`Account Created for ${user.email}`);
-    //               this.$router.go({path: this.$router.path});
-    //             },
-    //             err => {
-    //               alert(err.message);
-    //             });
-    // }
   }
 }
 </script>

@@ -30,12 +30,12 @@
 
             <!-- need to update -->
             <div class="box-content">
-              <form id="loginForm" class="form-login">
+              <form @submit.prevent="login" id="loginForm" class="form-login">
                 <input type="email" name="email" id="un" class="form-control" placeholder="Email" v-model="email">
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" v-model="password">
 
                 <!-- <div class="control-actions"> -->
-                <button v-on:click="login" id="signin-btn" class="btn btn-primary btn-sm">Sign In</button>
+                <button id="signin-btn" class="btn btn-primary btn-sm">Sign In</button>
                 <!-- </div> -->
               </form>
 
@@ -66,33 +66,34 @@
 </template>
 
 <script>
-import database from '../../firebase.js';
-// import firebase from 'firebase';
+//import database from '../../firebase.js';
+import firebase from 'firebase';
 // import sideimg from "../assets/signin.jpg"
 
 export default {
   name: 'login',
-  data() {
+  data: function() {
     return {
+      name: '',
       email: '',
       password: '',
+      password2: '',
+      year: ''
     }
   },
 
   methods: {
-    login: function(e) {
-      database.auth().signInWithEmailAndPassword(this.email, this.password)
+    login: function() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
           alert(`You are logged in as ${user.email}`);
-          this.$router.push('/account');
+          this.$router.push('/home');
         },
         err => {
           alert(err.message);
         });
-
-      e.preventDefault();
     }
-  },
+  }
 }
 </script>
 
