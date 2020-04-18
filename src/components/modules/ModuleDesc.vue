@@ -353,7 +353,7 @@ h1{
   /*border-color:black;*/
   border-width: 2px;
   background: #BA9977;
-  width: 1350px;
+  width: 1800px;
   height: 103px;
   left: 45px;
   top: 430px;
