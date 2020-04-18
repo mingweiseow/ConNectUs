@@ -25,8 +25,8 @@
 <script>
 
 import 'material-icons/iconfont/material-icons.css';
-import Subscriptions from './Subscriptions.vue'
-import Featured from './Featured.vue'
+import Subscriptions from '../components/Subscriptions.vue'
+import Featured from '../components/Featured.vue'
 
 export default {
 

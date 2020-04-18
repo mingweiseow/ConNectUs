@@ -36,7 +36,7 @@
   font-weight normal !important
   color: #BA9977
   background rgba(196, 196, 196, 0.2)
-  width 1900px
+  width 100%
   height 160px
   left 266px
   top 130px

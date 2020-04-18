@@ -1,25 +1,44 @@
 <template>
-  <vs-list>
-    <vs-list-item class = 'title' title="CS1010S" subtitle="Last updated 24/05/2020" color = '#BA9977' style = 'font-weight:normal !important'>
-      <vs-button class = 'buttons' color="#BA9977" type="flat">Read More</vs-button>
-    </vs-list-item>
-    <br>
-    <vs-list-item  class = 'title' title="GEH1908" subtitle="Last updated 24/05/2020" >
-    <vs-button class = 'buttons' color="#BA9977" type="flat">Read More</vs-button>
-    </vs-list-item>
-    <br>
-    <vs-list-item  class = 'title' title="EC1301" subtitle="Last updated 24/05/2020">
-      <vs-button class = 'buttons' color="#BA9977" type="flat">Read More</vs-button>
-    </vs-list-item>
-    <br>
-    <vs-list-item class = 'title' title="BT1101R" subtitle="Last updated 24/05/2020">
-      <vs-button class = 'buttons' color="#BA9977" type="flat">Read More</vs-button>
-    </vs-list-item>
-    <br>
-  </vs-list>
+  <div class = 'index container'>
+      <h2 class = 'black-text'>{{ module }}</h2>
+    </div>
+  
+
+
+
+  
 </template>
 
+<script>
+import db from '../../firebase.js'
 
+export default {
+  data() {
+    return {
+      module: "",
+    };
+  },
+  methods: {
+    fetchItems: function () {
+      db.collection("Users")
+      .get()
+      .then((querySnapshot) => {
+        let user = []
+        querySnapshot.forEach((doc) => {
+          user.push(doc.data());
+          this.module = user[0].modules;
+        });
+      })
+      .catch((err) => {
+        console.log("error gerring doc", err);
+      });
+    },
+  },
+created() {
+    this.fetchItems();
+  },
+};
+</script>
 <style lang="stylus" >
 
 .buttons{
@@ -33,7 +52,7 @@
   font-weight normal !important
   color:#BA9977
   background rgba(196, 196, 196, 0.2)
-  width 1900px
+  width 100%
   height 160px
   left 266px
   top 130px
