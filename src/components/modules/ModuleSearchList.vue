@@ -4,8 +4,10 @@
     Know what you're looking for?
     </div>
 <div class = "modsearchfn">
-        <form id="fm1">
-        <input type="text" style="border: 3px solid #BA9977; width:270px" placeholder="Search Module"/>      
+        <form action="/summary">
+        <input type="text" style="border: 3px solid #BA9977; width:270px" placeholder="Search Module"/>   
+        <button type="submit"><i class="fa fa-search"></i></button>   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </form>
 </div>
 <div id = 'ow'>

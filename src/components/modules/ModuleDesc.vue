@@ -6,6 +6,9 @@
     <modreview></modreview>
     <modsubthread></modsubthread>
     <samples></samples>
+   
+    
+
     <label id = "difficulty"> Difficulty: </label> 
     <label id = "difficulty1"></label>
     <label id = "difficulty2"></label>
@@ -30,6 +33,7 @@
 
 
 <script>
+
 import ModReviewHeader from './ModReviewHeader.vue'
 import ModSummary from './ModSummary.vue'
 import ModOverview from './ModOverview.vue'
@@ -37,9 +41,8 @@ import ModReview from './ModReview.vue'
 import ModSubthread from './ModSubthread.vue'
 import Samples from './Samples.vue'
 
-
 export default {
-  data(){},
+  data(){  },
     components: {
       'modreviewheader': ModReviewHeader,
       'modsummary': ModSummary,

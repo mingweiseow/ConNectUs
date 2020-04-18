@@ -69,5 +69,6 @@ export default {
     color: #BA9977;
     font-size: 28px;
 }
+
 </style>
 

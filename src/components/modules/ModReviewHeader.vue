@@ -14,7 +14,8 @@ export default {
             title: "~CS1010S",
             
         }
-    }
+    },
+   
 }
 </script>
 
