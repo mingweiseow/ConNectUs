@@ -4,7 +4,6 @@
        <h1> <button style = "background-color: #BA9977; color: white; border:none" v-on:click.prevent="rev">Reviews</button></h1>
        <h2>
             <ul v-for="item in itemsList" v-bind:key="item.title" >
-
                     <h3 v-on:click="item.show = !item.show">{{item.user}}: <h4>{{item.module_summary}}  </h4> 
                         <h5> <label> {{item.comments}} Comments  </label> 
                           <button name="upvote" v-on:click="upvote(item)">   <img src="../../assets/logo.png" width="30" height="30" alt="upvote" /></button> {{item.upvotes}}

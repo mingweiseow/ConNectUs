@@ -1,119 +1,49 @@
 <template>
-  <div id=app>
-    <label id ="qn1">Know what you're looking for? </label>
-    <label id = "search">
-      <form id="fm1">
-          <input type="text" style="border: 3px solid #BA9977" placeholder="Search Module"/>      
-      </form>
-    </label>
-    <label id = "otherwise"> Otherwise, </label>
-    <label id = "filterby"> Filter by: </label>
-    <label id = "faculty"> Faculty </label>
-    <label id = "facultybox"></label>
-    <label id = "facultydropdown">
-    <select v-model="faculty" style="width: 120px">">
-      <option value="Computing">Computing</option>
-      <option value="Business">Business</option>
-      <option value="Engineering">Engineering</option>
-    </select></label>
-    <label id = "major"> Major </label>
-    <label id = "majorbox"></label>
-    <label id = "majordropdown">
-    <select v-model="major" style="width: 120px">"
-      <option value="Biz Analytics">Business Analytics</option>
-      <option value="Biz Admin">Busines Admin</option>
-      <option value="Mech. Eng">Mechanical Engineering</option>
-    </select></label>
-    <label id = "level"> Level </label>
-    <label id = "levelbox"></label>
-    <label id = "leveldropdown">
-    <select v-model="level" style="width: 120px">"
-      <option value="1000">1000</option>
-      <option value="2000">2000</option>
-      <option value="3000">3000</option>
-      <option value="4000">4000</option>
-    </select></label>
-    <label id = "code"> Code </label>
-    <label id = "codebox"></label>
-    <label id = "line"> </label>
-    <label id = "firstmodbox"></label>
-    <ul>
-      <li1><router-link to="/summary" exact>CS1010S</router-link></li1>
-    </ul>
-    <label id = "secondmodbox"></label>
-    <label id = "secondmod"> CS1010J </label>
+  <div class='test'>
+    <modulesearchlist></modulesearchlist>
+    <div id = 'line'>
     
+      </div>
 
-
-
+    <modulelist></modulelist>
   </div>
 </template>
 
 <script>
+import ModuleList from './ModuleList.vue'
+import ModuleSearchList from './ModuleSearchList.vue'
+
 
 export default {
   
   data(){
     return{
-        
         msg:"Modules"
         }
+  },
+    components: {
+    'modulelist':ModuleList,
+    'modulesearchlist': ModuleSearchList,
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#app *{
-    box-sizing: border-box;
-}
-#app{
-    margin: 20px auto;
-    max-width: 500px;
-}
-
-ul{
-  position: absolute;
-  width: 500px;
-  height: 42px;
-  left: 145px;
-  top: 260px;
-
-  text-decoration-line: underline;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-
-  color: #BA9977;
-  list-style-type: none;
-  text-align: right;
-  margin: 0;
+.test {
+    display: flex;
 }
 
 
-li1{
-   
-    border-color:white;
-    display: inline-block;
-    margin: 0 10px;
-    
-}
-li1 a{
-  text-decoration: none;
-  font-size: 36px;
-  color:#BA9977;
-  
-    
-}
 
 
-#qn1{
+/*#qn1{
   text-align: center;
   position: absolute;
   width: 296px;
   height: 30px;
   left: 13px;
-  top: 174px;
+  top: 100px;
 
   font-family: Poppins;
   font-style: normal;
@@ -121,16 +51,15 @@ li1 a{
   font-size: 20px;
   line-height: 30px;
   color: #000000;
-}
+}*/
 
-#search{
-  position: absolute;
-  width: 425px;
-  height: 34px;
-  left: 54.5px;
-  top: 217px;
+/*#search{
+  
+  height: 100px;
+  margin-left:10px;
+  margin-top: 130px;
 
-}
+}*/
 
 /*h21{
   position: absolute;
@@ -182,7 +111,7 @@ li1 a{
 
 }
 
-#faculty{
+/*#faculty{
   position: absolute;
   width: 73px;
   height: 30px;
@@ -314,7 +243,7 @@ li1 a{
 
   border: 3px solid #BA9977;
   box-sizing: border-box;
-}
+}*/
 
 #line{
   position: absolute;
@@ -343,41 +272,6 @@ li1 a{
   color: #BA9977;
 }*/
 
-#firstmodbox{
-  position: absolute;
-  width: 950px;
-  height: 84px;
-  left: 470px;
-  top: 219px;
-
-  background: rgba(196, 196, 196, 0.2);
-}
-
-#secondmod{
-  position: absolute;
-  width: 137px;
-  height: 54px;
-  left: 500px;
-  top: 339px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 54px;
-
-  color: #BA9977;
-}
-
-#secondmodbox{
-  position: absolute;
-  width: 950px;
-  height: 84px;
-  left: 470px;
-  top: 329px;
-
-  background: rgba(196, 196, 196, 0.2);
-}
 
 label{
     display: inline-block;
@@ -386,9 +280,10 @@ label{
     align-content:left;
 
 }
-input[type="text"]{
+
+/*input[type="text"]{
     display: inline-block;
     padding: 8px;
     width:50%;
-}
+}*/
 </style>
