@@ -4,6 +4,7 @@
        <h1> <button style = "background-color: #BA9977; color: white; border:none" v-on:click.prevent="rev">Reviews</button></h1>
        <h2>
             <ul v-for="item in itemsList" v-bind:key="item.title" >
+
                     <h3 v-on:click="item.show = !item.show">{{item.user}}: <h4>{{item.module_summary}}  </h4> 
                         <h5> <label> {{item.comments}} Comments  </label> 
                           <button name="upvote" v-on:click="upvote(item)">   <img src="../../assets/logo.png" width="30" height="30" alt="upvote" /></button> {{item.upvotes}}
@@ -39,28 +40,25 @@ components:{
     
 },
 methods:{
-    rev:function(){
-        database.collection('Modules').get().then((querySnapShot)=>{
-        let item={}
-        querySnapShot.forEach(doc=>{                
-        item=doc.data()
-        item.show=true
-        if(item.title == "CS1010S"){
-        this.itemsList.push(item)
-        }
-        
-}) }) },
-  upvote:function(item){
-    database.collection('Modules').doc('cCsUhgMUVNuSspM6ReNv').update({upvotes: item.upvotes+++1})
-    
+    rev: function() {
+            database.collection('Reviews').get().then((querySnapShot)=>{
+                let item={}
+                querySnapShot.forEach(doc=> {                
+                    item=doc.data()
+                    item.show=true
+                    if (item.module == "NFFeJ5YqTmBaAqoW12hn") {
+                    this.itemsList.push(item)
+                    }    
+                })
+            })
+    },
+   upvote: function(item) {
+       database.collection('Modules').doc('NFFeJ5YqTmBaAqoW12hn').update({upvotes: item.upvotes+++1})
   }, 
-    downvote:function(item){
-
-    database.collection('Modules').doc('cCsUhgMUVNuSspM6ReNv').update({downvotes: item.downvotes+++1})
-    
+   downvote: function(item) {
+       database.collection('Modules').doc('NFFeJ5YqTmBaAqoW12hn').update({downvotes: item.downvotes+++1})
   }, 
 },
-
 
 created(){
 this.fetchItems() 
