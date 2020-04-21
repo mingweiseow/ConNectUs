@@ -46,7 +46,7 @@
         <div class="profile-content">
             <!-- for each post: -->
             <div class="post">
-                <span class="details" id="saved-title">Title: 'title'</span>
+                <span class="details" id="saved-title">Posts</span>
                 <a class="btn btn-primary btn-md" role="button" id="view-post-btn">View</a>
             </div>
         </div>
@@ -166,6 +166,7 @@ h4 {
     height: 550px;
     overflow: scroll;
     padding: 10px;
+    
 }
 
 .post {
@@ -175,7 +176,7 @@ h4 {
     padding-top: 10px;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: #f5f5f5;
+    background: #C9B8A7;
     margin-bottom: 35px;
 }
 
@@ -183,6 +184,8 @@ h4 {
     font-size: 18px;
     margin: 10px;
     padding: 5px;
+    color: #FFFFFF;
+    float: left;
 }
 
 #view-post-btn {
@@ -190,7 +193,7 @@ h4 {
     height: 35px;
     width: 60px;
     background-color: #e2c0bb;
-    text-align: center;
+    text-align: centre;
     vertical-align: middle;
     padding-top: 6px;
     border-radius: 4px; 
@@ -202,7 +205,7 @@ h4 {
   font-size: 15px;
   height: 40px;
   width: 100px;
-  text-align: center;
+  text-align: centre;
   background-color: #C9B8A7; 
   border: solid white;
   margin: 10px;
