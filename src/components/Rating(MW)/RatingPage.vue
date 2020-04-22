@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ReviewHeader from './ReviewHeader.vue'
+import ReviewHeader from './BoxHeader.vue'
 import Rating from './Rating.vue'
 export default {
     data() {},

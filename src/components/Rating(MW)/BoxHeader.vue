@@ -1,17 +1,12 @@
 <template>
-    <h1>{{name}}</h1>
+    <h1>{{header}}:</h1>
 </template>
 
 <script>
 export default {
     props: {
-        name: String
+        header: String
     },
-    data() {
-        return {
-            title: "~CS1010S/Review"
-        }
-    }
 }
 </script>
 

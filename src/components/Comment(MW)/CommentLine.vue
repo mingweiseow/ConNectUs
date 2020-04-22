@@ -1,10 +1,12 @@
 <template>
     <div id = "comment-group">
-        <div>
-            <profile-pic v-bind:picture="profilepic" v-bind:style="PicStyle"></profile-pic>
+        <div class = "group">
+            <profile-pic v-bind:style="PicStyle"></profile-pic>
             <input type="text" placeholder="Add a comment...">
         </div>
-    <button>Publish</button>
+    <br>
+    <button>Post</button>
+    <br><br><br><br><br><br>
     </div>
 </template>
 
@@ -13,9 +15,8 @@ import ProfilePicture from './ProfilePicture.vue'
 export default {
     data() {
         return {
-            profilepic: "mw",
             PicStyle: {
-            'display': 'inline-block',
+                margin: "0px 25px 0px 0px"
             }
         }
     },
@@ -27,13 +28,14 @@ export default {
 
 <style scoped>
 #comment-group {
-    border: solid black;
-    padding-bottom: 100px;
+    margin-top: 50px;
+    text-align: center;
 }
 
-div {
-    margin: 80px 0 0 40px;
+.group {
+    display: flex;
 }
+
 input[type=text] {
     border: none;
     border-bottom: 2px solid black;
@@ -42,9 +44,7 @@ input[type=text] {
     font-style: normal;
     font-weight: normal;
     font-size: 36px;
-    width: 80%;
-    margin-left: 30px;
-    vertical-align: bottom;
+    width: 100%;
 }
 
 ::placeholder {
@@ -55,16 +55,14 @@ input[type=text] {
 
 button {
     float: right;
-    margin: 30px 90px 0px 0px;
-    width: 287px;
-    height: 50px;
+    width: 301px;
+    height: 56px;
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     background: #BA9977;
     border-radius: 5px;
     font-size: 24px;
-    line-height: 36px;
     color: #FFF;
     border: none;
     cursor: pointer;

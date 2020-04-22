@@ -1,15 +1,14 @@
 <template>
     <div id="view">
         <div class = "comment">
-            <subthreadBox
+            <reviewBox
             v-bind:style='boxStyle'
             v-bind:message="item.message"
             v-bind:name="item.name"
-            v-bind:title="item.title"
             v-bind:id="review_id"
             v-bind:user_id="item.user_id"
             v-bind:data="item"
-            ></subthreadBox>
+            ></reviewBox>
             <br>
             <br>
             <br>
@@ -17,7 +16,7 @@
             <comment-line></comment-line>
         </div>
         <div class="comment-section">
-            <commentBox v-for="reply in replies" v-bind:key="reply.subthread_id"
+            <commentBox v-for="reply in replies" v-bind:key="reply.review_id"
             v-bind:style="BoxStyle"
             v-bind:message="reply.message"
             v-bind:name="reply.name"
@@ -31,13 +30,13 @@
 
 <script>
 import database from '../../firebase.js'
-import subthreadBox from './SubthreadBox.vue'
-import commentLine from '../Comment(MW)/CommentLine.vue'
-import commentBox from '../Comment(MW)/CommentBox.vue'
+import reviewBox from './ReviewBox.vue'
+import commentLine from './CommentLine.vue'
+import commentBox from './CommentBox.vue'
 export default {
     data() {
         return {
-            subthread_id: "",
+            review_id: "",
             item: null,
             boxStyle: {
                 height: "auto",
@@ -48,23 +47,23 @@ export default {
                 margin: 'auto'
             },
             replies: [],
-            type:"Replies_Subthreads"
+            type:"Replies_Reviews"
         }
     },
     methods: {
-        fetchSubthread: async function() {
-            database.collection("Subthreads").
-            doc(this.subthread_id).
+        fetchReview: async function() {
+            database.collection("Reviews").
+            doc(this.review_id).
             get().
             then(doc => {
                 this.item = doc.data()
             })
         },
-        fetchSubthreadReplies: async function() {
-            return database.collection("Replies_Subthreads").get().then((querySnapShot)=>{
+        fetchReviewReplies: async function() {
+            return database.collection("Replies_Reviews").get().then((querySnapShot)=>{
                     let item = {}
                     querySnapShot.forEach(doc=> { 
-                        if (doc.data().subthread_id == this.subthread_id){
+                        if (doc.data().review_id == this.review_id){
                             item = doc.data()
                             item["id"] = doc.id
                             this.replies.push(item)
@@ -74,14 +73,14 @@ export default {
         },
     },
     components: {
-        'subthreadBox' : subthreadBox,
+        'reviewBox' : reviewBox,
         'commentLine' : commentLine,
         'commentBox' : commentBox,
     },
     async created() {
-        this.subthread_id = this.$route.params.subthread_id;
-        await this.fetchSubthread()
-        await this.fetchSubthreadReplies()
+        this.review_id = this.$route.params.review_id;
+        await this.fetchReview()
+        await this.fetchReviewReplies()
         console.log(this.item)
     }
 }

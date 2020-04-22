@@ -2,9 +2,7 @@
   <div>
     <ul>
         <li v-for="item in itemsList" v-bind:key="item.name" >
-
             <h2 v-on:click="item.show = !item.show">{{item.name}}</h2>
-            
         </li>
     </ul>
   </div>
@@ -36,7 +34,6 @@ export default {
         created(){
             this.fetchItems() 
         }
-    
     }
 </script>
 

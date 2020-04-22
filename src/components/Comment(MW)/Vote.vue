@@ -1,45 +1,101 @@
 <template>
     <div>
         <div class='vote-box'>
-            <div class='up-vote' style="margin-right: 5px" @click= upVote()></div>
+            <div id='up-vote' style="margin-right: 5px" @click= upVote()></div>
             <p style='margin-left: 5px;'>{{counterUp}}</p>
         </div>
         <div class='vote-box'>
-            <div class='down-vote' style="margin-left: 10px" @click= downVote()></div>
+            <div id='down-vote' style="margin-left: 10px" @click= downVote()></div>
             <p>{{counterDown}}</p> 
         </div>
     </div>
 </template>
 
 <script>
+import database from '../../firebase.js'
+import firebase from 'firebase'
+import 'firebase/firestore'
+
 export default {
+    props: {
+        id : String,
+        user_id : String,
+        data: Object,
+        type: String
+    },
     data() {
         return {
-            counterUp: 0,
-            counterDown: 0,
+            counterUp: this.data.upvotes,
+            counterDown: this.data.downvotes,
         }
     },
     methods: {
+        test: function() {
+            var db = database.collection(this.type).doc(this.id)
+            db.update({upvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
+        },
         upVote: function() {
-            return this.counterUp += 1
+            var db = database.collection(this.type).doc(this.id)
+            if (this.data.upvoters_id.includes(this.data.user_id) == false) { 
+                db.update({upvotes: this.counterUp+++1})
+                db.update({upvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
+            } else if (this.data.upvoters_id.includes(this.data.user_id) == true) { 
+                db.update({upvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
+                db.update({upvotes: this.counterUp---1})
+            }
+            location.reload()
         },
         downVote: function() {
-            return this.counterDown -= 1
+            var db = database.collection(this.type).doc(this.id)
+            if (!this.data.downvoters_id.includes(this.data.user_id)) { 
+                db.update({downvotes: this.counterDown+++1})
+                db.update({downvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
+                location.reload();
+            } else if (this.data.downvoters_id.includes(this.data.user_id)) { 
+                db.update({downvotes: this.counterDown---1})
+                db.update({downvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
+                location.reload();
+            }
+        },
+        updateVote: function() {
+            database.collection(this.type).
+            doc(this.id).
+            get().
+            then(doc => {
+                this.counterUp = doc.data().upvotes
+                this.counterDown = doc.data().downvotes
+            })
         }
+        /*toggleShapeColour: function() {
+            if (this.data.upvoters_id.includes(this.data.user_id)) {
+                document.getElementById("up-vote").style.borderColor = "transparent transparent #f5e2d0 transparent"
+            } else if (this.data.downvoters_id.includes(this.data.user_id)) {
+                document.getElementById("down-vote").style.borderColor = "#f5e2d0 transparent transparent transparent"
+            }
+        }*/
     },
+    created(){
+        //this.toggleShapeColour()
+        this.updateVote()
+    }
 }
 </script>
 
 <style scoped>
 p {
     display: inline-block;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
 }
 
 .vote-box {
     display: inline-block;
 }
 
-.up-vote {
+
+#up-vote {
     width: 0;
     height: 0;
     border-style: solid;
@@ -48,7 +104,7 @@ p {
     display: inline-block;
 }
 
-.down-vote {
+#down-vote {
     width: 0;
     height: 0;
     border-style: solid;

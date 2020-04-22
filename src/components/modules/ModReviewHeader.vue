@@ -8,14 +8,9 @@
 
 <script>
 export default {
-
-    data() {
-        return {
-            title: "~CS1010S",
-            
-        }
+    props : {
+        title: String
     },
-   
 }
 </script>
 
@@ -28,8 +23,6 @@ export default {
     line-height: 2px;
     color: #BA9977;
     padding: 30px;
-
-    
 }
 
 

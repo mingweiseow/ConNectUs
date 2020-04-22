@@ -22,7 +22,7 @@ export default {
 #moduleoverview h1{
     background: #E8E8E8;
     border-radius: 5px;
-    width: 1431px;
+    width: 95.5%;
     margin-left: 46px;
     font-family: 'Poppins';
     font-style: normal;

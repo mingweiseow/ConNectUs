@@ -1,84 +1,146 @@
 <template>
 <div>
-    <div id = 'modreview'> 
-       <h1> <button style = "background-color: #BA9977; color: white; border:none" v-on:click.prevent="rev">Reviews</button></h1>
-       <h2>
-            <ul v-for="item in itemsList" v-bind:key="item.title" >
-                    <h3 v-on:click="item.show = !item.show">{{item.user}}: <h4>{{item.module_summary}}  </h4> 
-                        <h5> <label> {{item.comments}} Comments  </label> 
-                          <button name="upvote" v-on:click="upvote(item)">   <img src="../../assets/logo.png" width="30" height="30" alt="upvote" /></button> {{item.upvotes}}
-                         <button name="downvote" v-on:click="downvote(item)"> <img src="../../assets/logo.png" width="30" height="30" alt="downvote" /></button> {{item.downvotes}}</h5> </h3>
-                        
-            </ul>
-           
-        </h2>
-    
+    <modreviewheader v-bind:title="this.modName"></modreviewheader>
+    <modsummary v-bind:module_id="this.mod_id"></modsummary>
+    <modoverview></modoverview>
+    <div id='modreview'> 
+       <h1> <button style = "background-color: #BA9977; color: white; border:none" @click=showReview()>Reviews</button></h1>
+       <div id ="modbox" v-show="visibleReview">
+            <commentBox v-for="item in reviewList" v-bind:key="item.id"
+            v-bind:style='boxStyle'
+            v-bind:message="item.message"
+            v-bind:name="item.name"
+            v-bind:user_id="item.user_id"   
+            v-bind:id="item.id"
+            v-bind:data="item"
+            ></commentBox>
+       </div>
     </div>
+    <div id='modreview'> 
+       <h1> <button style = "background-color: #BA9977; color: white; border:none" @click=showSubthread()>Subthreads</button></h1>
+       <div id ="modbox-subthread" v-show="visibleSubthread">
+            <subthreadBox v-for="item in subthreadList" v-bind:key="item.id"
+            v-bind:style='boxStyle'
+            v-bind:message="item.message"
+            v-bind:name="item.name"
+            v-bind:id="item.id"
+            v-bind:user_id="item.user_id"
+            v-bind:data="item"
+            v-bind:title="item.title"
+            ></subthreadBox>
+       </div>
+    </div>
+    <samples></samples>
 </div>
 </template>
 
 <script>
 import database from '../../firebase.js'
+import ModReviewHeader from './ModReviewHeader.vue'
+import ModSummary from './ModSummary.vue'
+import ModOverview from './ModOverview.vue'
+import commentBox from '../Comment(MW)/ReviewBox.vue'
+import subthreadBox from '../Subthread(MW)/SubthreadBox.vue'
+import Samples from './Samples.vue'
 
 export default {
-    props:{
-        test:{
-            type: String
-
+    data(){
+        return{
+            type: "",
+            reviewList: [],
+            subthreadList:[],
+            visibleReview: false,
+            visibleSubthread: false,
+            modName: "",
+            boxStyle: {
+                height: "auto"
+            },
+            mod_id: "NFFeJ5YqTmBaAqoW12hn",
         }
     },
-data(){
-    return{
-        title: "Reviews",
-        itemsList: [],
-        count:0,
-        
-    }
-},
-components:{
-    
-},
-methods:{
-    rev: function() {
-            database.collection('Reviews').get().then((querySnapShot)=>{
-                let item={}
-                querySnapShot.forEach(doc=> {                
-                    item=doc.data()
-                    item.show=true
-                    if (item.module == "NFFeJ5YqTmBaAqoW12hn") {
-                    this.itemsList.push(item)
-                    }    
-                })
-            })
+    components:{
+        'modreviewheader': ModReviewHeader,
+        'modsummary': ModSummary,
+        'modoverview': ModOverview,
+        'commentBox' : commentBox,
+        'subthreadBox' : subthreadBox,
+        'samples': Samples,
     },
-   upvote: function(item) {
-       database.collection('Modules').doc('NFFeJ5YqTmBaAqoW12hn').update({upvotes: item.upvotes+++1})
-  }, 
-   downvote: function(item) {
-       database.collection('Modules').doc('NFFeJ5YqTmBaAqoW12hn').update({downvotes: item.downvotes+++1})
-  }, 
-},
+    methods:{
+        fetchReviews: async function() {
+                return database.collection("Reviews").get().then((querySnapShot)=>{
+                    let item = {}
+                    querySnapShot.forEach(doc=> { 
+                        if (doc.data().module == "NFFeJ5YqTmBaAqoW12hn"){
+                            item = doc.data()
+                            item["id"] = doc.id
+                            this.reviewList.push(item)
+                        }
+                    })
+                })
+        },
+        showReview() {
+            this.visibleReview = !this.visibleReview
+            return null;
+        },
+        fetchSubthreads: async function() {
+                return database.collection("Subthreads").get().then((querySnapShot)=>{
+                    let item = {}
+                    querySnapShot.forEach(doc=> { 
+                        if (doc.data().module == "NFFeJ5YqTmBaAqoW12hn"){
+                            item = doc.data()
+                            item["id"] = doc.id
+                            this.subthreadList.push(item)
+                        }
+                    })
+                })
+        },
+        fetchModuleInfo: async function() {
+            return database.collection("Modules").get().then((querySnapShot)=>{
+                    querySnapShot.forEach(doc=> { 
+                        if (doc.id == "NFFeJ5YqTmBaAqoW12hn"){
+                            this.modName = "~" + doc.data().mod_name
+                        }
+                    })
+                })
+        },
+        showSubthread() {
+            this.visibleSubthread = !this.visibleSubthread
+            return null;
+        },
+        toggleBoxSize() {
+            if (this.reviewList.length < 4) {
+                document.getElementById("modbox").style.height = "500px"
+            }
+            if (this.subthreadList.length < 4) {
+                document.getElementById("modbox-subthread").style.height = "500px"
+            }
+            return null;
+        },
+    }, 
+    async created() {
+        await this.fetchModuleInfo()
+        await this.fetchReviews()
+        await this.fetchSubthreads()
+        this.toggleBoxSize()
+    }
+}
 
-created(){
-this.fetchItems() 
-
-}}
 
 </script>
 
 <style scoped>
 
-label{
-    text-decoration: underline;
-    margin-right: 10px;
+#modreview {
+    width: 95.5%;
+    margin: auto 50px;
 }
 
 #modreview h1{
     background: #BA9977;
     border-radius: 5px;
     height: 100px;
-    width: 1431px;
-    margin-left: 46px;
+    width: 100%;
     margin-top: 20px;
     margin-bottom: 0px;
     font-family: 'Poppins';
@@ -90,6 +152,17 @@ label{
     color: #FFFFFF;
     padding: 30px;
 }
+
+#modbox {
+    height: auto;
+    overflow-x: hidden; 
+}
+
+#modbox-subthread{
+    height: auto;
+    overflow-x: hidden; 
+}
+
 button:active {
   background: #e5e5e5;
   -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
@@ -119,7 +192,6 @@ h2{
     border-radius: 5px;
     width: 1431px;
     margin-left: 46px;
-    
 }
 
 h3{
@@ -141,13 +213,6 @@ h4{
     font-size: 22px;
     margin-left: 30px;
     color: black;
-}
-
-h5{
-    font-size:22px;
-    margin-left: 1080px;
-    color:black;
-    
 }
 
 

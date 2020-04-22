@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import ReviewHeader from './ReviewHeader.vue'
+import ReviewHeader from './BoxHeader.vue'
 import StarRating from 'vue-star-rating'
 export default {
     data() {

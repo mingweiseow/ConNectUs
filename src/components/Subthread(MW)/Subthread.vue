@@ -11,17 +11,19 @@
 <script>
 import database from '../../firebase.js';
 export default {
-    data() {
-        return {}
-    },
     methods: {
         postSubthread: function() {
             database.collection("Subthreads").add({
                 created_at: new Date(),
+                comments: 0,
                 module: "CS1010S",
                 subthread: document.getElementById("subthread").value,
                 title: document.getElementById("title").value,
-                user_id: "CYQhtjvEUxqAptFwsckJ"
+                user_id: "CYQhtjvEUxqAptFwsckJ",
+                upvoters_id: [],
+                downvoters_id: [],
+                upvotes: 0,
+                downvotes: 0,
             }).then(function(docRef) {
                 console.log("Subthread posted with ID: ", docRef.id);
             }).catch(function(error) {

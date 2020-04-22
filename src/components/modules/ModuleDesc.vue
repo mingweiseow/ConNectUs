@@ -4,7 +4,6 @@
     <modsummary></modsummary>
     <modoverview></modoverview>
     <modreview></modreview>
-    <modsubthread></modsubthread>
     <samples></samples>
    
     
@@ -38,7 +37,6 @@ import ModReviewHeader from './ModReviewHeader.vue'
 import ModSummary from './ModSummary.vue'
 import ModOverview from './ModOverview.vue'
 import ModReview from './ModReview.vue'
-import ModSubthread from './ModSubthread.vue'
 import Samples from './Samples.vue'
 
 export default {
@@ -48,7 +46,6 @@ export default {
       'modsummary': ModSummary,
       'modoverview': ModOverview,
       'modreview': ModReview,
-      'modsubthread': ModSubthread,
       'samples': Samples,
      }
 }
@@ -107,211 +104,6 @@ h1{
 }
 */
 
-
-
-
-#difficulty{
-  position: absolute;
-  width: 95.89px;
-  height: 35.45px;
-  left: 449.95px;
-  top: 90px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-
-  color: #000000;
-
-}
-#difficulty1{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 402px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#difficulty2{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 444.62px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#difficulty3{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 487.24px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#difficulty4{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 529.86px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#difficulty5{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 572.48px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#knowledge{
-  position: absolute;
-  width: 269.57px;
-  height: 35.45px;
-  left: 722.71px;
-  top: 90px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-
-  color: #000000;
-}
-
-#knowledge1{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 730px;
-  top: 120px;
-
-  border: 4px solid #BA9977;
-  box-sizing: border-box;
-}
-
-#knowledge2{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 772.62px;
-  top: 120px;
-
-  border: 4px solid #BA9977;
-  box-sizing: border-box;
-}
-
-#knowledge3{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 815.24px;
-  top: 120px;
-
-  border: 4px solid #BA9977;
-  box-sizing: border-box;
-}
-
-#knowledge4{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 857.86px;
-  top: 120px;
-
-  border: 4px solid #BA9977;
-  box-sizing: border-box;
-}
-
-#knowledge5{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 900.48px;
-  top: 120px;
-
-  border: 4px solid #BA9977;
-  box-sizing: border-box;
-}
-
-#overall{
-  position: absolute;
-  width: 79.91px;
-  height: 35.45px;
-  left: 1176.62px;
-  top: 90px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-
-  color: #000000;
-}
-
-#overall1{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 1121.21px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#overall2{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 1163.83px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#overall3{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 1206.45px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#overall4{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 1249.07px;
-  top: 120px;
-
-  background: #BA9977;
-}
-
-#overall5{
-  position: absolute;
-  width: 21.31px;
-  height: 20px;
-  left: 1291.69px;
-  top: 120px;
-
-  background: #BA9977;
-}
 
 /*#reviews{
   position: absolute;
