@@ -1,6 +1,6 @@
 <template>
     <div id="module-header">
-        <h1>~{{mod_name}}/Subthread</h1>
+        <h1>~{{mod_name}}/Reviews</h1>
     </div>
 </template>
 

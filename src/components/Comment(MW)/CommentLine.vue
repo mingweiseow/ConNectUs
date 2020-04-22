@@ -2,17 +2,28 @@
     <div id = "comment-group">
         <div class = "group">
             <profile-pic v-bind:style="PicStyle"></profile-pic>
-            <input type="text" placeholder="Add a comment...">
+            <input id="comment-line" type="text" placeholder="Add a comment...">
         </div>
     <br>
-    <button>Post</button>
+    <button v-on:click="postComment">Post</button>
     <br><br><br><br><br><br>
     </div>
 </template>
 
 <script>
 import ProfilePicture from './ProfilePicture.vue'
+import database from '../../firebase.js';
+import firebase from 'firebase'
+import 'firebase/firestore'
+
 export default {
+    props: {
+        data: Object,
+        type: String,
+        reply_type: String,
+        id: String,
+        cat: String
+    },
     data() {
         return {
             PicStyle: {
@@ -22,7 +33,34 @@ export default {
     },
     components: {
         'profile-pic': ProfilePicture
+    },
+    methods: {
+        postComment: function() {
+            database.collection(this.type).add({
+                created_at: new Date(),
+                mod_name: this.data.mod_title,
+                message: document.getElementById("comment-line").value,
+                user_id: "CYQhtjvEUxqAptFwsckJ",
+                name:"mingwei",
+                [this.reply_type]: this.id,
+                upvoters_id: [],
+                downvoters_id: [],
+                upvotes: 0,
+                downvotes: 0,
+                module: this.data.module
+            }).then(function(docRef) {
+                console.log("Reply posted with ID: ", docRef.id);
+            }).catch(function(error) {
+                console.error("Error posting reply: ", error);
+            });
+            database.collection(this.cat).
+            doc(this.id).
+            update({comments: firebase.firestore.FieldValue.increment(+1)})
+
+            setTimeout(location.reload.bind(location), 1000);
+        },
     }
+    
 }
 </script>
 
@@ -76,6 +114,8 @@ button:active {
   box-shadow: inset 0px 0px 5px #c1c1c1;
   outline: none;
 }
+
+button:focus {outline:0;}
 
 button:hover {
     transform: scale(1.1);

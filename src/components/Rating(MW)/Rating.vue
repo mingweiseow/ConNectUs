@@ -1,7 +1,6 @@
 <template>
     <div>
         <div id="rating">
-            <review-header class = "module-name" v-bind:name = "name"></review-header>
             <div class="rating-row">
                 <h1>Difficulty:</h1>
                 <star-rating :show-rating = false rounded-corners = true star-size = 25 padding = 1 active-color= #BA9977 border-width = 6 border-color = #BA9977 inactive-color = #FFF></star-rating>
@@ -21,17 +20,14 @@
 </template>
 
 <script>
-import ReviewHeader from './BoxHeader.vue'
 import StarRating from 'vue-star-rating'
 export default {
     data() {
         return {
-            'name': '~CS1010S/Review'
         }
     },
     components: {
         'star-rating': StarRating,
-        'review-header': ReviewHeader,
     }
 }
 </script>

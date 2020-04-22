@@ -14,7 +14,13 @@
             <br>
             <br>
             <div class="comment-header">Comments:</div>
-            <comment-line></comment-line>
+            <comment-line
+            v-bind:data="item"
+            v-bind:type=type
+            v-bind:reply_type=reply_type
+            v-bind:id=subthread_id
+            v-bind:cat=cat>
+            </comment-line>
         </div>
         <div class="comment-section">
             <commentBox v-for="reply in replies" v-bind:key="reply.subthread_id"
@@ -48,7 +54,9 @@ export default {
                 margin: 'auto'
             },
             replies: [],
-            type:"Replies_Subthreads"
+            cat: "Subthreads",
+            type:"Replies_Subthreads",
+            reply_type: "subthread_id"
         }
     },
     methods: {

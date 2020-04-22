@@ -25,8 +25,8 @@ export default new Router({
 		{ path: '/summary', name: 'summary', component: ModReview},
 		{ path: '/modules', name: 'modules', component: Modules},
 		{ path: '/account', name: 'account', component: Account},
-		{ path: '/makereview', name: 'review', component: MakeReview	},
-		{ path: '/askquestion', name: 'ask', component: AskQuestion},
+		{ path: '/makereview/:module_id', name: 'review', component: MakeReview	},
+		{ path: '/askquestion/:module_id', name: 'ask', component: AskQuestion},
 		{ path: '/reviewpage/:review_id', name: 'reviewpage', component: ReviewPage},
 		{ path: '/subthreadpage/:subthread_id', name: 'subthreadpage', component: SubthreadPage}
 	],

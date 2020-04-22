@@ -1,8 +1,10 @@
 <template>
 <div>
     <modreviewheader v-bind:title="this.modName"></modreviewheader>
-    <modsummary v-bind:module_id="this.mod_id"></modsummary>
-    <modoverview></modoverview>
+    <modsummary 
+    v-bind:module_id="this.mod_id"
+    ></modsummary>
+    <modoverview v-bind:mod_summary="this.mod_summary"></modoverview>
     <div id='modreview'> 
        <h1> <button style = "background-color: #BA9977; color: white; border:none" @click=showReview()>Reviews</button></h1>
        <div id ="modbox" v-show="visibleReview">
@@ -56,6 +58,7 @@ export default {
                 height: "auto"
             },
             mod_id: "NFFeJ5YqTmBaAqoW12hn",
+            mod_summary: "",
         }
     },
     components:{
@@ -104,6 +107,13 @@ export default {
                     })
                 })
         },
+        fetchModuleSummary: async function() {
+            return database.collection("Modules").
+            doc("NFFeJ5YqTmBaAqoW12hn").
+            get().then(doc => {
+                this.mod_summary = doc.data().module_summary
+            })
+        },
         showSubthread() {
             this.visibleSubthread = !this.visibleSubthread
             return null;
@@ -120,6 +130,7 @@ export default {
     }, 
     async created() {
         await this.fetchModuleInfo()
+        await this.fetchModuleSummary()
         await this.fetchReviews()
         await this.fetchSubthreads()
         this.toggleBoxSize()
@@ -174,6 +185,8 @@ button:active {
 button:hover {
     transform: scale(1.1);
 }
+
+button:focus {outline:0;}
 
 
 header{

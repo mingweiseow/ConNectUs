@@ -13,10 +13,16 @@
             <br>
             <br>
             <div class="comment-header">Comments:</div>
-            <comment-line></comment-line>
+            <comment-line
+            v-bind:data="item"
+            v-bind:type=type
+            v-bind:reply_type=reply_type
+            v-bind:id=review_id
+            v-bind:cat=cat>
+            </comment-line>
         </div>
         <div class="comment-section">
-            <commentBox v-for="reply in replies" v-bind:key="reply.review_id"
+            <commentBox v-for="reply in replies" v-bind:key="reply.id"
             v-bind:style="BoxStyle"
             v-bind:message="reply.message"
             v-bind:name="reply.name"
@@ -47,7 +53,9 @@ export default {
                 margin: 'auto'
             },
             replies: [],
-            type:"Replies_Reviews"
+            cat: "Reviews",
+            type:"Replies_Reviews",
+            reply_type: "review_id"
         }
     },
     methods: {
@@ -81,7 +89,6 @@ export default {
         this.review_id = this.$route.params.review_id;
         await this.fetchReview()
         await this.fetchReviewReplies()
-        console.log(this.item)
     }
 }
 </script>

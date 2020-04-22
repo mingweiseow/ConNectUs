@@ -37,25 +37,38 @@ export default {
         upVote: function() {
             var db = database.collection(this.type).doc(this.id)
             if (this.data.upvoters_id.includes(this.data.user_id) == false) { 
-                db.update({upvotes: this.counterUp+++1})
-                db.update({upvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
+                if (this.data.downvoters_id.includes(this.data.user_id) == false) {
+                    db.update({upvotes: this.counterUp+++1})
+                    db.update({upvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
+                } else if (this.data.downvoters_id.includes(this.data.user_id) == true) {
+                    db.update({downvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
+                    db.update({upvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
+                    db.update({upvotes: this.counterUp+++1})
+                    db.update({downvotes: this.counterDown---1})
+                }
             } else if (this.data.upvoters_id.includes(this.data.user_id) == true) { 
                 db.update({upvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
                 db.update({upvotes: this.counterUp---1})
             }
-            location.reload()
+            setTimeout(location.reload.bind(location), 600);
         },
         downVote: function() {
             var db = database.collection(this.type).doc(this.id)
-            if (!this.data.downvoters_id.includes(this.data.user_id)) { 
-                db.update({downvotes: this.counterDown+++1})
-                db.update({downvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
-                location.reload();
-            } else if (this.data.downvoters_id.includes(this.data.user_id)) { 
-                db.update({downvotes: this.counterDown---1})
+            if (this.data.downvoters_id.includes(this.data.user_id) == false) { 
+                if (this.data.upvoters_id.includes(this.data.user_id) == false) {
+                    db.update({downvotes: this.counterDown+++1})
+                    db.update({downvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
+                } else if (this.data.upvoters_id.includes(this.data.user_id) == true) {
+                    db.update({upvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
+                    db.update({downvoters_id: firebase.firestore.FieldValue.arrayUnion(this.data.user_id)})
+                    db.update({upvotes: this.counterUp---1})
+                    db.update({downvotes: this.counterDown+++1})
+                }
+            } else if (this.data.downvoters_id.includes(this.data.user_id) == true) {
                 db.update({downvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
-                location.reload();
+                db.update({downvotes: this.counterDown---1})
             }
+            setTimeout(location.reload.bind(location), 600);
         },
         updateVote: function() {
             database.collection(this.type).

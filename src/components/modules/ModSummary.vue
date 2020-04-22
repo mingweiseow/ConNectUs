@@ -6,10 +6,10 @@
                 </div>
                 <div class = "post">
                     <div id = 'makereview'>
-                        <router-link to="/makereview" exact><a> Make a Review </a></router-link>
+                        <router-link :to="{name: 'review', params: {module_id:module_id} }"><a> Make a Review </a></router-link>
                     </div>
                     <div id = 'askquestion'>
-                        <router-link to="/askquestion" exact><a> Ask a Question </a></router-link>
+                        <router-link :to="{name: 'ask', params: {module_id:module_id} }"><a> Ask a Question </a></router-link>
                     </div>
                 </div>
         </div>

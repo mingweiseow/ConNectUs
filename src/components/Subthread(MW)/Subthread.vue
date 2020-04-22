@@ -3,23 +3,29 @@
         <div id="subthread-input">
             <input id = "title" type="text" placeholder="Thread title...">
         </div>
-        <textarea id = "subthread" v-model="message" type = "text" placeholder="Write a comment..."></textarea>
-        <button v-on:click = "postSubthread">Publish</button> 
+        <textarea id = "message" v-model="message" type = "text" placeholder="Write a comment..."></textarea>
+        <button v-on:click="postSubthread">Publish</button> 
     </div>
 </template>
 
 <script>
 import database from '../../firebase.js';
 export default {
+    props: {
+        data: Object,
+        mod_id: String
+    },
     methods: {
         postSubthread: function() {
             database.collection("Subthreads").add({
                 created_at: new Date(),
                 comments: 0,
-                module: "CS1010S",
-                subthread: document.getElementById("subthread").value,
+                module: this.mod_id,
+                mod_title: this.data.mod_name,
+                message: document.getElementById("message").value,
                 title: document.getElementById("title").value,
                 user_id: "CYQhtjvEUxqAptFwsckJ",
+                name: "mingwei",
                 upvoters_id: [],
                 downvoters_id: [],
                 upvotes: 0,
@@ -29,8 +35,8 @@ export default {
             }).catch(function(error) {
                 console.error("Error posting subthread: ", error);
             });
+            setTimeout(window.location = "/summary", 600);
         },
-
     }
 }
 </script>

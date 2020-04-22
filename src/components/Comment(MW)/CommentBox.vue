@@ -4,19 +4,21 @@
             <profilepic></profilepic>
             <p>{{name}}</p>
         </div>
-        <div>
+        <div class = "comment-box">
             <div class="message">
                 <p>{{message}}</p>
             </div>
-            <vote
-            v-bind:style='voteStyle'
-            v-bind:id="id"
-            v-bind:type="type"
-            v-bind:user_id="user_id"
-            v-bind:data="data"
-            ></vote>
+                <div style="float:right">
+                    <vote
+                    v-bind:style='voteStyle'
+                    v-bind:id="id"
+                    v-bind:type="type"
+                    v-bind:user_id="user_id"
+                    v-bind:data="data"
+                ></vote>
+                </div>
+            </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -34,14 +36,8 @@ export default {
     data() {
         return {
             voteStyle: {
-                float: 'right',
-                "margin-right": "100px"
+                "margin-right": "70px"
             },
-        }
-    },
-    method: {
-        async fetchReviewReplies() {
-
         }
     },
     components: {
@@ -53,10 +49,15 @@ export default {
 <style scoped>
 #box {
     display: flex;
-    width: 90%;
+    width: 95%;
 }
 .message {
-    margin: 20px 50px 0px 50px
+    margin: 20px 50px 0px 50px;
+}
+
+.comment-box {
+    width:100%;
+    height: 200px;
 }
 
 p {

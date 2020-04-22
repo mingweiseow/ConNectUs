@@ -1,14 +1,16 @@
 <template>
 <div>
     <div id = 'moduleoverview'> 
-        <h1>{{title}}</h1>
+        <h1>{{mod_summary}}</h1>
     </div>
 </div>
 </template>
 
 <script>
 export default {
-
+    props: {
+        mod_summary: String
+    },
     data() {
         return {
             title: "This module introduces the fundamental concepts of problem solving by computing and programming using an imperative programming language. It is the first and foremost introductory course to computing and is equivalent to CS1010 and CS1010E Programming Methodology. This module is appropriate for FoS students.",

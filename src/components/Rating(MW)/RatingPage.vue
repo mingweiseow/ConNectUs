@@ -1,18 +1,43 @@
 <template>
     <div>
-        <review-header></review-header>
-        <rating></rating>
+        <rating-header
+        v-bind:mod_name=mod_name>
+        </rating-header>
+        <rating
+        v-bind:data=data
+        v-bind:mod_id=mod_id></rating>
     </div>
 </template>
 
 <script>
-import ReviewHeader from './BoxHeader.vue'
+import database from '../../firebase.js'
+import RatingHeader from './RatingHeader.vue'
 import Rating from './Rating.vue'
 export default {
-    data() {},
+    data() {
+        return {
+            mod_name: "",
+            mod_id: this.$route.params.module_id,
+            data: null, 
+        }
+    },
     components: {
-        'review-header': ReviewHeader,
+        'rating-header': RatingHeader,
         'rating': Rating,
+    },
+    methods: {
+        fetchModuleInfo: async function() {
+            return database.collection("Modules").
+            doc(this.$route.params.module_id).
+            get().
+            then(doc => {
+                this.mod_name = doc.data().mod_name
+                this.data = doc.data()
+            })
+        },
+    },
+    async created() {
+        await this.fetchModuleInfo()
     }
 }
 </script>
