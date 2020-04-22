@@ -39,28 +39,25 @@ components:{
     
 },
 methods:{
-    rev:function(){
-        database.collection('Modules').get().then((querySnapShot)=>{
-        let item={}
-        querySnapShot.forEach(doc=>{                
-        item=doc.data()
-        item.show=true
-        if(item.title == "CS1010S"){
-        this.itemsList.push(item)
-        }
-        
-}) }) },
-  upvote:function(item){
-    database.collection('Modules').doc('cCsUhgMUVNuSspM6ReNv').update({upvotes: item.upvotes+++1})
-    
+    rev: function() {
+            database.collection('Reviews').get().then((querySnapShot)=>{
+                let item={}
+                querySnapShot.forEach(doc=> {                
+                    item=doc.data()
+                    item.show=true
+                    if (item.module == "NFFeJ5YqTmBaAqoW12hn") {
+                    this.itemsList.push(item)
+                    }    
+                })
+            })
+    },
+   upvote: function(item) {
+       database.collection('Modules').doc('NFFeJ5YqTmBaAqoW12hn').update({upvotes: item.upvotes+++1})
   }, 
-    downvote:function(item){
-
-    database.collection('Modules').doc('cCsUhgMUVNuSspM6ReNv').update({downvotes: item.downvotes+++1})
-    
+   downvote: function(item) {
+       database.collection('Modules').doc('NFFeJ5YqTmBaAqoW12hn').update({downvotes: item.downvotes+++1})
   }, 
 },
-
 
 created(){
 this.fetchItems() 

@@ -14,24 +14,30 @@
 <script>
 import database from '../../firebase.js'
 export default {
-data(){
-return{
-itemsList: []
-}
-},
-components:{
-},
-methods:{
-fetchItems:function(){
-database.collection('items').get().then((querySnapShot)=>{
-let item={}
-querySnapShot.forEach(doc=>{
-item=doc.data()
-item.show=false
-this.itemsList.push(item)
-}) }) } },
-created(){
-this.fetchItems() }}
+    data(){
+        return{
+            itemsList: []
+            }
+        },
+    components:{
+        },
+    methods:{
+        fetchItems:function(){
+            database.collection('items').get().then((querySnapShot)=>{
+                let item={}
+                querySnapShot.forEach(doc=>{
+                    item=doc.data()
+                    item.show=false
+                    this.itemsList.push(item)
+                    })
+                }) 
+            }
+        },
+        created(){
+            this.fetchItems() 
+        }
+    
+    }
 </script>
 
 <style scoped>
