@@ -43,29 +43,44 @@
             <button id="signout-btn" class="btn btn-primary btn-sm">Sign Out</button>
         </div>
         
-        <div class="profile-content">
-            <!-- for each post: -->
+        <!-- <div class="profile-content">
+            for each post: 
             <div class="post">
                 <span class="details" id="saved-title">Posts</span>
                 <a class="btn btn-primary btn-md" role="button" id="view-post-btn">View</a>
             </div>
         </div>
+    </div> -->
+
+<div id = 'your_posts'>
+  <div id ="postbox">
+    <postBox v-for="item in postList" v-bind:key ="item.id"
+      v-bind:style = 'postStyle'
+      v-bind:comment = 'item.mod_title'
+      ></postBox>
+      </div>
     </div>
+</div>
 </div>
 </template>
 
 
 <script>
 import database from '../../firebase.js';
-//import Signup from '../auth/SignUp.vue';
+import PostBox from './PostBox.vue';
 export default {
   data() {
     return {
+      postStyle: {
+                height: "auto"
+            },
       email: "",
       nop: "",
       yos: "",
       un :'',
-      subs:  ''
+      subs:  '',
+      postList: [ ],
+      comment: '',
     };
   },
   methods: {
@@ -90,14 +105,33 @@ export default {
           console.log("Error getting documents", err);
         });
     },
+    
+    fetchTitles: async function() {
+                return database.collection("Reviews").get().then((querySnapShot)=>{
+                    let item = {}
+                    console.log(this.postList)
+                    querySnapShot.forEach(doc=> { 
+                        if (doc.data().user_id == "CYQhtjvEUxqAptFwsckJ"){
+                            item = doc.data()
+                            item["id"] = doc.id
+                            console.log(item.mod_title)
+                            this.postList.push(item)
+
+                        }
+                    })
+                })
+        },
+
+
   },
 
-  // components: {
-  //   'Signup': Signup
-  //},
+   components: {
+     'postBox': PostBox
+  },
 
-  created() {
-    this.fetchItems();
+  async created() {
+    await this.fetchItems();
+    await this.fetchTitles(); 
   },
 };
 </script>
@@ -133,6 +167,7 @@ export default {
     font-family: Poppins, Arial, serif;
     text-align: center;
     padding: 10px;
+    margin-top: 30px;
 }
 
 .profile-info {
