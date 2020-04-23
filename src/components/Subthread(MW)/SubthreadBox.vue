@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         subscribeSubthread: function() {
-            var db = database.collection("Subthreads").doc(this.id)
+            var db = database.collection("Subthreads").doc(this.user_id)
             if (this.data.subscribers.includes(this.user_id) == true) {
                 alert("You have unsubscribed to this subthread.")
                 db.update({subscribers: firebase.firestore.FieldValue.arrayRemove(this.user_id)})
