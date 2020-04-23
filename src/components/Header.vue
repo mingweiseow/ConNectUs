@@ -99,7 +99,7 @@ button {
 
 button:hover {
     background-color: rgba(189, 195, 199, 0.8)
-
-
 }
+
+button:focus {outline:0;}
 </style>

@@ -1,15 +1,14 @@
 <template>
     <div id="view">
         <div class = "comment">
-            <subthreadBox
+            <reviewBox
             v-bind:style='boxStyle'
             v-bind:message="item.message"
             v-bind:name="item.name"
-            v-bind:title="item.title"
             v-bind:id="review_id"
             v-bind:user_id="item.user_id"
             v-bind:data="item"
-            ></subthreadBox>
+            ></reviewBox>
             <br>
             <br>
             <br>
@@ -18,12 +17,12 @@
             v-bind:data="item"
             v-bind:type=type
             v-bind:reply_type=reply_type
-            v-bind:id=subthread_id
+            v-bind:id=review_id
             v-bind:cat=cat>
             </comment-line>
         </div>
         <div class="comment-section">
-            <commentBox v-for="reply in replies" v-bind:key="reply.subthread_id"
+            <commentBox v-for="reply in replies" v-bind:key="reply.id"
             v-bind:style="BoxStyle"
             v-bind:message="reply.message"
             v-bind:name="reply.name"
@@ -37,42 +36,39 @@
 
 <script>
 import database from '../../firebase.js'
-import subthreadBox from './SubthreadBox.vue'
-import commentLine from '../Comment(MW)/CommentLine.vue'
-import commentBox from '../Comment(MW)/CommentBox.vue'
+import reviewBox from './ReviewBox.vue'
+import commentLine from './CommentLine.vue'
+import commentBox from './CommentBox.vue'
 export default {
     data() {
         return {
-            subthread_id: "",
+            review_id: "",
             item: null,
             boxStyle: {
                 height: "auto",
                 'border-bottom': "hidden"
             },
             dataFetched: false,
-            BoxStyle: {
-                margin: 'auto'
-            },
             replies: [],
-            cat: "Subthreads",
-            type:"Replies_Subthreads",
-            reply_type: "subthread_id"
+            cat: "Reviews",
+            type:"Replies_Reviews",
+            reply_type: "review_id"
         }
     },
     methods: {
-        fetchSubthread: async function() {
-            database.collection("Subthreads").
-            doc(this.subthread_id).
-            get().
-            then(doc => {
+        fetchReview: async function() {
+            database.collection("Reviews")
+            .doc(this.review_id)
+            .get()
+            .then(doc => {
                 this.item = doc.data()
             })
         },
-        fetchSubthreadReplies: async function() {
-            return database.collection("Replies_Subthreads").get().then((querySnapShot)=>{
+        fetchReviewReplies: async function() {
+            return database.collection("Replies_Reviews").get().then((querySnapShot)=>{
                     let item = {}
                     querySnapShot.forEach(doc=> { 
-                        if (doc.data().subthread_id == this.subthread_id){
+                        if (doc.data().review_id == this.review_id){
                             item = doc.data()
                             item["id"] = doc.id
                             this.replies.push(item)
@@ -82,15 +78,14 @@ export default {
         },
     },
     components: {
-        'subthreadBox' : subthreadBox,
+        'reviewBox' : reviewBox,
         'commentLine' : commentLine,
         'commentBox' : commentBox,
     },
     async created() {
-        this.subthread_id = this.$route.params.subthread_id;
-        await this.fetchSubthread()
-        await this.fetchSubthreadReplies()
-        console.log(this.item)
+        this.review_id = this.$route.params.review_id;
+        await this.fetchReview()
+        await this.fetchReviewReplies()
     }
 }
 </script>

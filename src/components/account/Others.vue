@@ -9,7 +9,7 @@
         <div class = "subs">Subscribers: 36</div>
         <div class = "vertical"></div> 
         <button class = "subscribe">Subscribe</button>
-        <div class = "chat">Chat with John Doe</div>
+        <router-link to="/otheraccount" div class = "chat">Chat with John Doe</div></router-link>
 
     </b-col>
     <b-col cols="9">

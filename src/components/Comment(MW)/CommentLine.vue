@@ -1,39 +1,79 @@
 <template>
     <div id = "comment-group">
-        <div>
-            <profile-pic v-bind:picture="profilepic" v-bind:style="PicStyle"></profile-pic>
-            <input type="text" placeholder="Add a comment...">
+        <div class = "group">
+            <profile-pic v-bind:style="PicStyle"></profile-pic>
+            <input id="comment-line" type="text" placeholder="Add a comment...">
         </div>
-    <button>Publish</button>
+    <br>
+    <button v-on:click="postComment">Post</button>
+    <br><br><br><br><br><br>
     </div>
 </template>
 
 <script>
 import ProfilePicture from './ProfilePicture.vue'
+import database from '../../firebase.js';
+import firebase from 'firebase'
+import 'firebase/firestore'
+
 export default {
+    props: {
+        data: Object,
+        type: String,
+        reply_type: String,
+        id: String,
+        cat: String
+    },
     data() {
         return {
-            profilepic: "mw",
             PicStyle: {
-            'display': 'inline-block',
+                margin: "0px 25px 0px 0px"
             }
         }
     },
     components: {
         'profile-pic': ProfilePicture
+    },
+    methods: {
+        postComment: function() {
+            database.collection(this.type).add({
+                created_at: new Date(),
+                mod_name: this.data.mod_title,
+                message: document.getElementById("comment-line").value,
+                user_id: "CYQhtjvEUxqAptFwsckJ",
+                name:"mingwei",
+                [this.reply_type]: this.id,
+                upvoters_id: [],
+                downvoters_id: [],
+                upvotes: 0,
+                downvotes: 0,
+                module: this.data.module
+            }).then(function(docRef) {
+                console.log("Reply posted with ID: ", docRef.id);
+            }).catch(function(error) {
+                console.error("Error posting reply: ", error);
+            });
+            database.collection(this.cat)
+            .doc(this.id)
+            .update({comments: firebase.firestore.FieldValue.increment(+1)})
+
+            setTimeout(location.reload.bind(location), 1000);
+        },
     }
+    
 }
 </script>
 
 <style scoped>
 #comment-group {
-    border: solid black;
-    padding-bottom: 100px;
+    margin-top: 50px;
+    text-align: center;
 }
 
-div {
-    margin: 80px 0 0 40px;
+.group {
+    display: flex;
 }
+
 input[type=text] {
     border: none;
     border-bottom: 2px solid black;
@@ -42,9 +82,7 @@ input[type=text] {
     font-style: normal;
     font-weight: normal;
     font-size: 36px;
-    width: 80%;
-    margin-left: 30px;
-    vertical-align: bottom;
+    width: 100%;
 }
 
 ::placeholder {
@@ -55,16 +93,14 @@ input[type=text] {
 
 button {
     float: right;
-    margin: 30px 90px 0px 0px;
-    width: 287px;
-    height: 50px;
+    width: 301px;
+    height: 56px;
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     background: #BA9977;
     border-radius: 5px;
     font-size: 24px;
-    line-height: 36px;
     color: #FFF;
     border: none;
     cursor: pointer;
@@ -78,6 +114,8 @@ button:active {
   box-shadow: inset 0px 0px 5px #c1c1c1;
   outline: none;
 }
+
+button:focus {outline:0;}
 
 button:hover {
     transform: scale(1.1);

@@ -8,11 +8,12 @@ import SignIn from './components/auth/SignIn.vue'
 import SignUp from './components/auth/SignUp.vue'
 import Home from './components/home/Home.vue'
 import Modules from './components/modules/Modules.vue'
-import ModuleDesc from './components/modules/ModuleDesc.vue'
+import ModReview from './components/modules/ModReview.vue'
 import MakeReview from './components/Rating(MW)/RatingPage.vue'
-import AskQuestion from './components/Subthread(MW)/SubthreadPage.vue'
+import AskQuestion from './components/Subthread(MW)/SubthreadPost.vue'
 import Account from './components/account/Account.vue'
-
+import ReviewPage from './components/Comment(MW)/ReviewPage.vue'
+import SubthreadPage from './components/Subthread(MW)/SubthreadPage.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -21,11 +22,13 @@ export default new Router({
 		{ path: '/signin', name: 'sign-in', component: SignIn},
 		{ path: '/signup', name: 'sign-up', component: SignUp},
 		{ path: '/home', name: 'home', component: Home},
-		{ path: '/summary', name: 'summary', component: ModuleDesc},
+		{ path: '/summary', name: 'summary', component: ModReview},
 		{ path: '/modules', name: 'modules', component: Modules},
 		{ path: '/account', name: 'account', component: Account},
-		{ path: '/makereview', name: 'review', component: MakeReview},
-		{ path: '/askquestion', name: 'ask', component: AskQuestion}
+		{ path: '/makereview/:module_id', name: 'review', component: MakeReview	},
+		{ path: '/askquestion/:module_id', name: 'ask', component: AskQuestion},
+		{ path: '/reviewpage/:review_id', name: 'reviewpage', component: ReviewPage},
+		{ path: '/subthreadpage/:subthread_id', name: 'subthreadpage', component: SubthreadPage}
 	],
 	mode: 'history'
 })

@@ -1,75 +1,71 @@
 <template>
-    <div id="comment">
-        <div class="comment-box">
-            <review-header v-bind:name='name' v-bind:style='headerStyle'></review-header>
-            <p>{{comment}}</p>
-            <div style = "float:right">
-                <a href="" class='comments'>0 Comments</a>
-                <vote v-bind:style='voteStyle'></vote>
+    <div id="box">
+        <div style="margin-left: 30px;white-space: nowrap; text-align: center">
+            <profilepic></profilepic>
+            <p>{{name}}</p>
+        </div>
+        <div class = "comment-box">
+            <div class="message">
+                <p>{{message}}</p>
+            </div>
+                <div style="float:right">
+                    <vote
+                    v-bind:style='voteStyle'
+                    v-bind:id="id"
+                    v-bind:type="type"
+                    v-bind:user_id="user_id"
+                    v-bind:data="data"
+                ></vote>
+                </div>
             </div>
         </div>
-        <comment-line v-bind:style='commentStyle'></comment-line>
-    </div>
 </template>
 
 <script>
-import ReviewHeader from '../Rating/ReviewHeader.vue'
-import CommentLine from './CommentLine.vue'
+import ProfilePicture from './ProfilePicture.vue'
 import Vote from './Vote.vue'
 export default {
+    props: {
+        message: String,
+        id: String,
+        name: String,
+        type: String,
+        user_id: String,
+        data: Object,
+    },
     data() {
         return {
-            comment: "This mod is incredibly tough. You need to be mentally prepared to spend hours coding and learning from external sources. Prof John did an amazing job in teaching the basics. However, just watching his lectures are insufficient for you to fully comprehend the python concepts.",
-            name: "mingwei:",
-            headerStyle: {
-                fontSize: '40px',
-            },
             voteStyle: {
-                float: 'left',
-                'padding-right': '50px'
+                "margin-right": "70px"
             },
-            commentStyle: {
-                'text-align': 'center'
-            }
         }
     },
-    methods: {
-        upvote: function() {}
-    },
     components: {
-        'review-header': ReviewHeader,
-        'comment-line': CommentLine,
-        'vote': Vote,
+        'vote' : Vote,
+        'profilepic' : ProfilePicture
     }
 }
 </script>
-
 <style scoped>
-#comment .comment-box {
-    background: #E5E5E5;
-    border-radius: 5px;
-    width: 80%;
-    padding: 0.5px 12px 20px 12px;
-    margin: 0 auto;
-    overflow: auto;
+#box {
+    display: flex;
+    width: 95%;
+}
+.message {
+    margin: 20px 50px 0px 50px;
 }
 
-#comment p {
+.comment-box {
+    width:100%;
+    height: 200px;
+}
+
+p {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
     line-height: 30px;
-    position: relative;
 }
 
-.comments {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 26px;
-    line-height: 39px;
-    text-decoration-line: underline;
-    color: black
-}
 </style>

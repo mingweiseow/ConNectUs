@@ -1,18 +1,17 @@
 <template>
     <div>
-        <rating-header
-        v-bind:mod_name=mod_name>
-        </rating-header>
-        <rating
+        <subthread-header
+        v-bind:mod_name=mod_name></subthread-header>
+        <subthread
         v-bind:data=data
-        v-bind:mod_id=mod_id></rating>
+        v-bind:mod_id=mod_id></subthread>
     </div>
 </template>
 
 <script>
 import database from '../../firebase.js'
-import RatingHeader from './RatingHeader.vue'
-import Rating from './Rating.vue'
+import SubthreadHeader from './SubthreadHeader.vue'
+import Subthread from './Subthread.vue'
 export default {
     data() {
         return {
@@ -22,15 +21,15 @@ export default {
         }
     },
     components: {
-        'rating-header': RatingHeader,
-        'rating': Rating,
+        'subthread-header': SubthreadHeader,
+        'subthread': Subthread,
     },
     methods: {
         fetchModuleInfo: async function() {
-            return database.collection("Modules")
-            .doc(this.$route.params.module_id)
-            .get()
-            .then(doc => {
+            return database.collection("Modules").
+            doc(this.$route.params.module_id).
+            get().
+            then(doc => {
                 this.mod_name = doc.data().mod_name
                 this.data = doc.data()
             })
@@ -43,5 +42,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
- 

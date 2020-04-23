@@ -1,8 +1,6 @@
 <template>
-    <div class ="profile-pic">
-        <b-img v-bind:src = getImage(picture) v-bind:alt="picture">
-        </b-img>
-    </div>
+        <span class="img">
+        </span>
 </template>
 
 <script>
@@ -19,27 +17,11 @@ export default {
 </script>
 
 <style scoped>
-img {
-    width: 100px;
-    height: 100px;
-    background-size: cover;
+.img {
+    height: 85px;
+    width: 85px;
+    background-color: #bbb;
     border-radius: 50%;
+    display: inline-block;
 }
 </style>
-        <div class='vote-box'>
-            <div class='star-shape'></div>
-        </div>
-
-
-.star-shape {
-    margin: 50px 0;
-    position: relative;
-    display: block;
-    color: red;
-    width: 0px;
-    height: 0px;
-    border-right: 100px solid transparent;
-    border-bottom: 70px solid red;
-    border-left: 100px solid transparent;
-    transform: rotate(35deg);
-}

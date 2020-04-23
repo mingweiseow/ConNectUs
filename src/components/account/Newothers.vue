@@ -30,7 +30,6 @@
 
     <div class="toggle">
         <a class="posts">Your Posts</a>
-        <a class="saved">Saved Posts</a>
     </div>
 
     <div class="wrapper">
