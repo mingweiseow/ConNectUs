@@ -1,6 +1,6 @@
 <template>
         <div class="post-box">
-            <router-link :to="{name:'summary', params: {module_id:this.mod_id, } }" class='readmore'>Read more</router-link>
+            <router-link :to="{name:'summary', params: {module_id:this.mod_id, user_id:user_id } }" class='readmore'>Read more</router-link>
             <p>{{mod_name}}</p>
     </div>
 </template>
