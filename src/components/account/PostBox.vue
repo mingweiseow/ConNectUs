@@ -3,6 +3,7 @@
         <div class="post-box">
             <a id = "button"> <button style = "background-color: #C9B8A7 ; color: white; border:none; float: right; position : relative; z-index: 99;">View</button></a>
             <p>{{comment}}</p>
+            <p>Title: {{title}}</p>
         </div>
     </div>
 </template>
@@ -12,6 +13,7 @@
 export default {
     props: {
         comment: String,
+        title: String,
     }
    // data() {
      //   return {

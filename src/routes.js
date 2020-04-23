@@ -12,6 +12,7 @@ import ModuleDesc from './components/modules/ModuleDesc.vue'
 import MakeReview from './components/Rating(MW)/RatingPage.vue'
 import AskQuestion from './components/Subthread(MW)/SubthreadPage.vue'
 import Account from './components/account/Account.vue'
+import Newothers from './components/account/Newothers.vue'
 
 Vue.use(Router);
 
@@ -25,7 +26,8 @@ export default new Router({
 		{ path: '/modules', name: 'modules', component: Modules},
 		{ path: '/account', name: 'account', component: Account},
 		{ path: '/makereview', name: 'review', component: MakeReview},
-		{ path: '/askquestion', name: 'ask', component: AskQuestion}
+		{ path: '/askquestion', name: 'ask', component: AskQuestion},
+		{ path: '/other', name: 'other', component: Newothers}
 	],
 	mode: 'history'
 })

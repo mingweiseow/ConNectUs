@@ -40,7 +40,8 @@
             <h4 class="profile-display">Year of Study: {{yos}}</h4>
             <h4 class="profile-display">No. of Posts: {{nop}}</h4>
             <h4 class="profile-display">Subscribers: {{subs}}</h4>
-            <button id="signout-btn" class="btn btn-primary btn-sm">Sign Out</button>
+            
+            <router-link to="/other" tag="button" button id="signout-btn" class="btn btn-primary btn-sm">Sign Out</router-link>
         </div>
         
         <!-- <div class="profile-content">
@@ -57,6 +58,7 @@
     <postBox v-for="item in postList" v-bind:key ="item.id"
       v-bind:style = 'postStyle'
       v-bind:comment = 'item.mod_title'
+      v-bind:title = "item.title"
       ></postBox>
       </div>
     </div>
@@ -79,7 +81,7 @@ export default {
       yos: "",
       un :'',
       subs:  '',
-      postList: [ ],
+      postList: [],
       comment: '',
     };
   },
@@ -91,6 +93,8 @@ export default {
         .then((querySnapshot) => {
           let user = [];
           querySnapshot.forEach((doc) => {
+            //console.log(doc);
+            if (doc.id == "CYQhtjvEUxqAptFwsckJ"){
             user.push(doc.data());
             //console.log(doc.data());
             this.email = user[0].email;
@@ -98,7 +102,8 @@ export default {
             this.yos = user[0].year_of_study;
             this.nop = user[0].num_post;
             this.subs = user[0].subs;
-            //console.log(user);
+            console.log(user);
+            }
           });
         })
         .catch((err) => {
@@ -107,36 +112,37 @@ export default {
     },
     
     fetchReviewsMod: async function() {
-                return database.collection("Reviews").get().then((querySnapShot)=>{
-                    let item = {}
-                    console.log(this.postList)
-                    querySnapShot.forEach(doc=> { 
-                        if (doc.data().user_id == "CYQhtjvEUxqAptFwsckJ"){
-                            item = doc.data()
-                            item["id"] = doc.id
-                            console.log(item.mod_title)
-                            this.postList.push(item)
-
-                        }
-                    })
-                })
-        },
-
-        fetchSubthreadsMod: async function() {
                 return database.collection("Subthreads").get().then((querySnapShot)=>{
                     let item = {}
-                    console.log(this.postList)
+                    //console.log(this.postList)
                     querySnapShot.forEach(doc=> { 
                         if (doc.data().user_id == "CYQhtjvEUxqAptFwsckJ"){
                             item = doc.data()
                             item["id"] = doc.id
-                            console.log(item.mod_title)
+                            //console.log(item.mod_title)
+                            //console.log(item.title)
                             this.postList.push(item)
 
                         }
                     })
                 })
         },
+
+      //  fetchSubthreadsMod: async function() {
+      //          return database.collection("Subthreads").get().then((querySnapShot)=>{
+         //           let item = {}
+          //          console.log(this.postList)
+        //            querySnapShot.forEach(doc=> { 
+      //                 if (doc.data().user_id == "CYQhtjvEUxqAptFwsckJ"){
+                 //           item = doc.data()
+               //             item["id"] = doc.id
+             //               console.log(item.mod_title)
+           //                 this.postList.push(item)
+
+         //               }
+       //             })
+     //           })
+      //  },
 
 
   },
@@ -148,7 +154,7 @@ export default {
   async created() {
     await this.fetchItems();
     await this.fetchReviewsMod(); 
-    await this.fetchSubthreadsMod();
+    //await this.fetchSubthreadsMod();
   },
 };
 </script>
