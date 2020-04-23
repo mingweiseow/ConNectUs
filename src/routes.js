@@ -14,6 +14,10 @@ import AskQuestion from './components/Subthread(MW)/SubthreadPost.vue'
 import Account from './components/account/Account.vue'
 import ReviewPage from './components/Comment(MW)/ReviewPage.vue'
 import SubthreadPage from './components/Subthread(MW)/SubthreadPage.vue'
+import Newothers from './components/account/Newothers.vue'
+import Saved from './components/account/Saved.vue'
+import Posts from './components/account/Posts.vue'
+
 Vue.use(Router);
 
 export default new Router({
@@ -25,10 +29,15 @@ export default new Router({
 		{ path: '/summary/:module_id/:user_id', name: 'summary', component: ModReview},
 		{ path: '/modules', name: 'modules', component: Modules},
 		{ path: '/account', name: 'account', component: Account},
-		{ path: '/makereview/:module_id/:user_id', name: 'review', component: MakeReview	},
+		{ path: '/makereview/:module_id/:user_id', name: 'review', component: MakeReview},
 		{ path: '/askquestion/:module_id/:user_id', name: 'ask', component: AskQuestion},
 		{ path: '/reviewpage/:review_id/:user_id', name: 'reviewpage', component: ReviewPage},
 		{ path: '/subthreadpage/:subthread_id/:user_id', name: 'subthreadpage', component: SubthreadPage}
+		{ path: '/makereview', name: 'review', component: MakeReview},
+		{ path: '/askquestion', name: 'ask', component: AskQuestion},
+		{ path: '/other', name: 'other', component: Newothers},
+		{ path: '/saved', name: 'saved', component: Saved},
+		{ path: '/posts', name: 'posts', component: Posts}
 	],
 	mode: 'history'
 })

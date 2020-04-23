@@ -30,7 +30,7 @@
 
     <div class="toggle">
         <a class="posts">Your Posts</a>
-        <router-link to="/saved" exact><a class="saved">Saved Posts</a></router-link>
+        <router-link to="/saved" a class="saved">Saved Posts</router-link>
     </div>
 
     <div class="wrapper">
@@ -96,11 +96,13 @@ export default {
             //console.log(doc);
             if (doc.id == "CYQhtjvEUxqAptFwsckJ"){
             user.push(doc.data());
+            //console.log(doc.data());
             this.email = user[0].email;
             this.un = user[0].name;
             this.yos = user[0].year_of_study;
             this.nop = user[0].num_post;
             this.subs = user[0].subs;
+            console.log(user);
             }
           });
         })
@@ -118,7 +120,7 @@ export default {
                             item = doc.data()
                             item["id"] = doc.id
                             console.log(item.mod_title)
-                            //console.log(item.title)
+                            console.log(item.title)
                             this.postList.push(item)
 
                         }
