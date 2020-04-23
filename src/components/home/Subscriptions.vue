@@ -23,6 +23,8 @@
 <script>
 import database from '../../firebase.js';
 import PostBox from './PostBox.vue';
+import firebase from 'firebase';
+
 export default {
   data() {
     return {
@@ -35,13 +37,16 @@ export default {
   },
   methods: {
     fetchReviewsMod: async function() {
+                var user = firebase.auth().currentUser;
+                var email = user.email;
+
                 return database.collection("Users").get()
                 //.where('modules.module', '==',true)
                 .then((querySnapShot)=>{
                     //let item = {}
                     //console.log(this.postList)
                     querySnapShot.forEach(doc=> { 
-                        if (doc.data().email == "johndoe@email.com"){
+                        if (doc.data().email == email){
                             //item = doc.data()
                             //item["id"] = doc.id
                             //console.log("hello" , item.modules)
