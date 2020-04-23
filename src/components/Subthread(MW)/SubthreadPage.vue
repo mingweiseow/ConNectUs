@@ -32,6 +32,7 @@
             v-bind:data="reply"
             ></commentBox>
         </div>
+        <button v-on:click="backButton">Back</button>
     </div>
 </template>
 
@@ -80,6 +81,9 @@ export default {
                     })
                 })
         },
+        backButton: async function() {
+            window.location = "/summary/"+this.item.module+"/"+this.$route.params.user_id
+        }
     },
     components: {
         'subthreadBox' : subthreadBox,
@@ -90,7 +94,6 @@ export default {
         this.subthread_id = this.$route.params.subthread_id;
         await this.fetchSubthread()
         await this.fetchSubthreadReplies()
-        console.log(this.item)
     }
 }
 </script>
@@ -116,8 +119,36 @@ export default {
     text-align: center;
 }
 
-.comment-section {
-    
+button {
+    position: absolute;
+    right: 0;
+    width: 150px;
+    margin: 0px 20px 20px 0px;
+    height: 56px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    background: #BA9977;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    outline:none;
+}
+
+button:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
+
+button:focus {outline:0;}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 

@@ -102,7 +102,7 @@ export default {
             boxStyle: {
                 height: "auto"
             },
-            mod_id: "NFFeJ5YqTmBaAqoW12hn",
+            mod_id: this.$route.params.module_id,
             mod_summary: "",
             difficulty: 0,
             effort: 0,
@@ -124,7 +124,7 @@ export default {
                 return database.collection("Reviews").get().then((querySnapShot)=>{
                     let item = {}
                     querySnapShot.forEach(doc=> { 
-                        if (doc.data().module == "NFFeJ5YqTmBaAqoW12hn"){
+                        if (doc.data().module == this.mod_id){
                             item = doc.data()
                             item["id"] = doc.id
                             this.reviewList.push(item)
@@ -140,7 +140,7 @@ export default {
                 return database.collection("Subthreads").get().then((querySnapShot)=>{
                     let item = {}
                     querySnapShot.forEach(doc=> { 
-                        if (doc.data().module == "NFFeJ5YqTmBaAqoW12hn"){
+                        if (doc.data().module == this.mod_id){
                             item = doc.data()
                             item["id"] = doc.id
                             this.subthreadList.push(item)
@@ -151,7 +151,7 @@ export default {
         fetchModuleInfo: async function() {
             return database.collection("Modules").get().then((querySnapShot)=>{
                     querySnapShot.forEach(doc=> { 
-                        if (doc.id == "NFFeJ5YqTmBaAqoW12hn"){
+                        if (doc.id == this.mod_id){
                             this.modName = "~" + doc.data().mod_name
                             this.difficulty = doc.data().difficulty / doc.data().num_reviews
                             this.effort = doc.data().effort / doc.data().num_reviews
@@ -162,7 +162,7 @@ export default {
         },
         fetchModuleSummary: async function() {
             return database.collection("Modules").
-            doc("NFFeJ5YqTmBaAqoW12hn").
+            doc(this.mod_id).
             get().then(doc => {
                 this.mod_summary = doc.data().module_summary
             })

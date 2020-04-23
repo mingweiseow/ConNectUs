@@ -36,7 +36,7 @@ export default {
             }).catch(function(error) {
                 console.error("Error posting subthread: ", error);
             });
-            setTimeout(window.location = "/summary", 600);
+            setTimeout(window.location = "/summary/"+this.mod_id+"/"+this.$route.params.user_id, 600);
         },
     }
 }

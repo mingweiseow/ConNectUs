@@ -2,12 +2,13 @@
 
 <div class="profile-page">
     <div class="wrapper">     
-      <div style="border: solid blue" id = 'your_posts'>
+      <div id = 'your_posts'>
         <div id ="postbox">
-          <postBox style="border: solid black" v-for="mod in moduleList" v-bind:key ="mod.id"
+          <postBox v-for="mod in moduleList" v-bind:key ="mod.id"
             v-bind:style = 'postStyle'
             v-bind:mod_name = 'mod.mod_name'
             v-bind:mod_id = 'mod.module_id'
+            v-bind:user_id=user_id
             ></postBox>
             </div>
           </div>
@@ -29,6 +30,7 @@ export default {
             },
       postList: [],
       moduleList: [],
+      user_id: "",
     };
   },
   methods: {
@@ -40,23 +42,32 @@ export default {
             querySnapShot.forEach(doc=> { 
                 if (doc.data().email == email){
                     this.moduleList = doc.data().modules
-                    console.log("Module List", doc.data().modules)
                 }
             })
         })
     },
+    fetchUserId: async function() {
+      var user = firebase.auth().currentUser;
+      var email = user.email;
+      database.collection("Users").where("email", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(doc => {
+            this.user_id = doc.id
+      })
+    })
+    }
   },
-
    components: {
      'postBox': PostBox
   },
 
   async created() {
-    console.log("Here" , this.postList)
-    console.log("modules", this.moduleList)
-    await this.fetchReviewsMod(); 
+    await this.fetchUserId();
+    await this.fetchReviewsMod();
+    console.log(this.user_id)
   },
-};
+}
 </script>
 
 
@@ -83,7 +94,6 @@ export default {
     text-align: center;
     padding: 10px;
     margin-top: 30px;
-    border: solid black;
 }
 
 h4 {

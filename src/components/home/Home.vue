@@ -58,8 +58,6 @@ export default {
   color: black;
   background rgba(196, 196, 196, 0.2)
   height: 82px;
-
-
 }
   
 </style>

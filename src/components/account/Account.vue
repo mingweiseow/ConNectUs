@@ -92,13 +92,11 @@ export default {
           let user = [];
           querySnapshot.forEach((doc) => {
             user.push(doc.data());
-            //console.log(doc.data());
             this.email = user[0].email;
             this.un = user[0].name;
             this.yos = user[0].year_of_study;
             this.nop = user[0].num_post;
             this.subs = user[0].subs;
-            //console.log(user);
           });
         })
         .catch((err) => {

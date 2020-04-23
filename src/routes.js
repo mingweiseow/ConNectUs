@@ -22,13 +22,13 @@ export default new Router({
 		{ path: '/signin', name: 'sign-in', component: SignIn},
 		{ path: '/signup', name: 'sign-up', component: SignUp},
 		{ path: '/home', name: 'home', component: Home},
-		{ path: '/summary', name: 'summary', component: ModReview},
+		{ path: '/summary/:module_id/:user_id', name: 'summary', component: ModReview},
 		{ path: '/modules', name: 'modules', component: Modules},
 		{ path: '/account', name: 'account', component: Account},
-		{ path: '/makereview/:module_id', name: 'review', component: MakeReview	},
-		{ path: '/askquestion/:module_id', name: 'ask', component: AskQuestion},
-		{ path: '/reviewpage/:review_id', name: 'reviewpage', component: ReviewPage},
-		{ path: '/subthreadpage/:subthread_id', name: 'subthreadpage', component: SubthreadPage}
+		{ path: '/makereview/:module_id/:user_id', name: 'review', component: MakeReview	},
+		{ path: '/askquestion/:module_id/:user_id', name: 'ask', component: AskQuestion},
+		{ path: '/reviewpage/:review_id/:user_id', name: 'reviewpage', component: ReviewPage},
+		{ path: '/subthreadpage/:subthread_id/:user_id', name: 'subthreadpage', component: SubthreadPage}
 	],
 	mode: 'history'
 })

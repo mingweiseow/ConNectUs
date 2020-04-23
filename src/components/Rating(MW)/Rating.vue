@@ -72,7 +72,7 @@ export default {
                 module: this.mod_id,
                 mod_title: this.data.mod_name,
                 message: document.getElementById("message").value,
-                user_id: "CYQhtjvEUxqAptFwsckJ",
+                user_id: this.$route.params.user_id,
                 name: "mingwei",
                 upvoters_id: [],
                 downvoters_id: [],
@@ -97,7 +97,7 @@ export default {
             database.collection("Modules")
             .doc(this.mod_id)
             .update({overall: firebase.firestore.FieldValue.increment(this.overall)})
-            //setTimeout(window.location = "/summary", 1000);
+            setTimeout(window.location = "/summary/"+this.mod_id+"/"+this.$route.params.user_id, 1000);
         }
     },
 }
