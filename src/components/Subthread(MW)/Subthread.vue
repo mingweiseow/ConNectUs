@@ -30,6 +30,7 @@ export default {
                 downvoters_id: [],
                 upvotes: 0,
                 downvotes: 0,
+                subscribers: [],
             }).then(function(docRef) {
                 console.log("Subthread posted with ID: ", docRef.id);
             }).catch(function(error) {

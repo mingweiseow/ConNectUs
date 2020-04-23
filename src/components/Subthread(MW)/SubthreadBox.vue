@@ -2,6 +2,7 @@
     <div id="comment">
         <div class="comment-box">
             <button class ="posted-by">Posted by: {{name}}</button>
+            <button v-on:click="subscribeSubthread" class ="posted-by">Subscribe</button>
             <box-header v-bind:header=title></box-header>
             <p>{{message}}</p>
             <div class = 'comment' style = "float:right">
@@ -19,6 +20,9 @@
 </template>
 
 <script>
+import database from '../../firebase.js'
+import firebase from 'firebase'
+import 'firebase/firestore'
 import BoxHeader from '../Rating(MW)/BoxHeader.vue'
 import Vote from '../Comment(MW)/Vote.vue'
 export default {
@@ -42,12 +46,23 @@ export default {
             type: "Subthreads"
         }
     },
-    methods: {
-    },
     components: {
         'box-header': BoxHeader,
         'vote': Vote,
-    }
+    },
+    methods: {
+        subscribeSubthread: function() {
+            var db = database.collection("Subthreads").doc(this.id)
+            if (this.data.subscribers.includes(this.user_id) == true) {
+                alert("You have unsubscribed to this subthread.")
+                db.update({subscribers: firebase.firestore.FieldValue.arrayRemove(this.user_id)})
+            } else {
+                alert("You have subscribed to this subthread.")
+                db.update({subscribers: firebase.firestore.FieldValue.arrayUnion(this.user_id)})
+            }
+            setTimeout(location.reload.bind(location), 400);
+        }
+    },
 }
 </script>
 
@@ -95,7 +110,7 @@ export default {
     font-size: 24px;
     color: #FFFFFF;
     float:right;
-    margin-top: 10px
+    margin: 10px 5px 0px 10px;
 }
 
 button:active {
@@ -105,6 +120,8 @@ button:active {
   box-shadow: inset 0px 0px 5px #c1c1c1;
   outline: none;
 }
+
+button:focus {outline:0;}
 
 button:hover {
     transform: scale(1.1);

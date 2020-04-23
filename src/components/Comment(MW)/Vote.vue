@@ -30,10 +30,6 @@ export default {
         }
     },
     methods: {
-        test: function() {
-            var db = database.collection(this.type).doc(this.id)
-            db.update({upvoters_id: firebase.firestore.FieldValue.arrayRemove(this.data.user_id)})
-        },
         upVote: function() {
             var db = database.collection(this.type).doc(this.id)
             if (this.data.upvoters_id.includes(this.data.user_id) == false) { 
@@ -134,45 +130,5 @@ p {
 .down-vote:hover {
     cursor: pointer;
     transform: scale(1.2);
-}
-
-#star-five {
-  margin: 30px 0;
-  position: relative;
-  display: block;
-  color: red;
-  width: 0px;
-  height: 0px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid red;
-  border-left: 100px solid transparent;
-  transform: rotate(35deg);
-}
-#star-five:before {
-  border-bottom: 80px solid red;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  position: absolute;
-  height: 0;
-  width: 0;
-  top: -45px;
-  left: -65px;
-  display: block;
-  content: '';
-  transform: rotate(-35deg);
-}
-#star-five:after {
-  position: absolute;
-  display: block;
-  color: red;
-  top: 3px;
-  left: -105px;
-  width: 0px;
-  height: 0px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid red;
-  border-left: 100px solid transparent;
-  transform: rotate(-70deg);
-  content: '';
 }
 </style>

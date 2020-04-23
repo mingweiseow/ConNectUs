@@ -53,9 +53,9 @@ export default {
             }).catch(function(error) {
                 console.error("Error posting reply: ", error);
             });
-            database.collection(this.cat).
-            doc(this.id).
-            update({comments: firebase.firestore.FieldValue.increment(+1)})
+            database.collection(this.cat)
+            .doc(this.id)
+            .update({comments: firebase.firestore.FieldValue.increment(+1)})
 
             setTimeout(location.reload.bind(location), 1000);
         },

@@ -49,9 +49,6 @@ export default {
                 'border-bottom': "hidden"
             },
             dataFetched: false,
-            BoxStyle: {
-                margin: 'auto'
-            },
             replies: [],
             cat: "Reviews",
             type:"Replies_Reviews",
@@ -60,10 +57,10 @@ export default {
     },
     methods: {
         fetchReview: async function() {
-            database.collection("Reviews").
-            doc(this.review_id).
-            get().
-            then(doc => {
+            database.collection("Reviews")
+            .doc(this.review_id)
+            .get()
+            .then(doc => {
                 this.item = doc.data()
             })
         },

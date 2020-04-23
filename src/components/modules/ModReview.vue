@@ -1,6 +1,50 @@
 <template>
 <div>
-    <modreviewheader v-bind:title="this.modName"></modreviewheader>
+    <div class="header-box">
+        <modreviewheader style="position:absolute; left:0" v-bind:title="this.modName"></modreviewheader>
+            <div id="rating">
+                <div class="rating-row">
+                    <h1>Difficulty:</h1>
+                    <star-rating v-model="difficulty"
+                    v-bind:read-only="true"
+                    v-bind:increment="0.5"
+                    v-bind:show-rating="false"
+                    v-bind:rounded-corners="true"
+                    v-bind:star-size="25"
+                    v-bind:padding="1"
+                    active-color = "#BA9977" 
+                    v-bind:border-width = "6" 
+                    border-color = "#BA9977"
+                    inactive-color = "#FFF"></star-rating>
+            </div>
+                <div class="rating-row">
+                    <h1>Effort:</h1>
+                    <star-rating v-model="effort"
+                    v-bind:read-only="true"
+                    v-bind:show-rating="false"
+                    v-bind:rounded-corners="true"
+                    v-bind:star-size="25"
+                    v-bind:padding="1"
+                    active-color = "#BA9977" 
+                    v-bind:border-width = "6" 
+                    border-color = "#BA9977"
+                    inactive-color = "#FFF"></star-rating>
+                </div>
+                <div class="rating-row">
+                    <h1>Overall:</h1>
+                    <star-rating v-model="overall"
+                    v-bind:read-only="true"
+                    v-bind:show-rating="false"
+                    v-bind:rounded-corners="true"
+                    v-bind:star-size="25"
+                    v-bind:padding="1"
+                    active-color = "#BA9977" 
+                    v-bind:border-width = "6" 
+                    border-color = "#BA9977"
+                    inactive-color = "#FFF"></star-rating>
+                </div>
+        </div>
+    </div>
     <modsummary 
     v-bind:module_id="this.mod_id"
     ></modsummary>
@@ -37,6 +81,7 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 import database from '../../firebase.js'
 import ModReviewHeader from './ModReviewHeader.vue'
 import ModSummary from './ModSummary.vue'
@@ -59,6 +104,10 @@ export default {
             },
             mod_id: "NFFeJ5YqTmBaAqoW12hn",
             mod_summary: "",
+            difficulty: 0,
+            effort: 0,
+            overall: 0,
+            num_reviews: 0
         }
     },
     components:{
@@ -68,6 +117,7 @@ export default {
         'commentBox' : commentBox,
         'subthreadBox' : subthreadBox,
         'samples': Samples,
+        'star-rating': StarRating,
     },
     methods:{
         fetchReviews: async function() {
@@ -103,6 +153,9 @@ export default {
                     querySnapShot.forEach(doc=> { 
                         if (doc.id == "NFFeJ5YqTmBaAqoW12hn"){
                             this.modName = "~" + doc.data().mod_name
+                            this.difficulty = doc.data().difficulty / doc.data().num_reviews
+                            this.effort = doc.data().effort / doc.data().num_reviews
+                            this.overall = doc.data().overall / doc.data().num_reviews
                         }
                     })
                 })
@@ -141,6 +194,27 @@ export default {
 </script>
 
 <style scoped>
+
+.header-box {
+    display:flex;
+    height:120px;
+    justify-content: center;
+}
+
+#rating {
+    display:flex;
+    justify-content: space-around;
+    width: 60%;
+    text-align: center;
+}
+
+.rating-row h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+}
 
 #modreview {
     width: 95.5%;
@@ -196,64 +270,6 @@ header{
     border-color:black;
     border-width: 2px;
 }
-h1{
-    color:ivory
-}
-
-h2{
-    background: #E8E8E8;
-    border-radius: 5px;
-    width: 1431px;
-    margin-left: 46px;
-}
-
-h3{
-  /* text-align: center; */
-    height:200px;
-    margin-left: 22px;
-    padding: 10px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 30px;
-    color: #BA9977;
-    
-
-}
-
-h4{
-    margin-bottom: 80px;
-    font-size: 22px;
-    margin-left: 30px;
-    color: black;
-}
-
-
-/* #itemsList{
-    width: 100%;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 0 5px;
-    box-sizing: border-box;
-} */
-
-
-
-
- /* #lists{
-  
-    flex-basis: 300px;
-    text-align: center;
-    padding: 0px;
-    
-    margin: 10px;
-    width: 1431px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: normal;
-    margin-left: 46px;
-    
-}  */
 </style>
 
 

@@ -2,33 +2,104 @@
     <div>
         <div id="rating">
             <div class="rating-row">
-                <h1>Difficulty:</h1>
-                <star-rating :show-rating = false rounded-corners = true star-size = 25 padding = 1 active-color= #BA9977 border-width = 6 border-color = #BA9977 inactive-color = #FFF></star-rating>
+                <h1>Difficulty: {{difficulty}}</h1>
+                <star-rating v-model="difficulty"
+                v-bind:increment="0.5"
+                v-bind:show-rating="false"
+                v-bind:rounded-corners="true"
+                v-bind:star-size="25"
+                v-bind:padding="1"
+                active-color = "#BA9977" 
+                v-bind:border-width = "6" 
+                border-color = "#BA9977"
+                inactive-color = "#FFF"></star-rating>
             </div>
             <div class="rating-row">
-                <h1>Effort:</h1>
-                <star-rating :show-rating = false rounded-corners = true star-size = 25 padding = 1 active-color= #BA9977 border-width = 6 border-color = #BA9977 inactive-color = #FFF></star-rating>
+                <h1>Effort: {{effort}}</h1>
+                <star-rating v-model="effort"
+                v-bind:show-rating="false"
+                v-bind:rounded-corners="true"
+                v-bind:star-size="25"
+                v-bind:padding="1"
+                active-color = "#BA9977" 
+                v-bind:border-width = "6" 
+                border-color = "#BA9977"
+                inactive-color = "#FFF"></star-rating>
             </div>
             <div class="rating-row">
-                <h1>Overall:</h1>
-                <star-rating :show-rating = false rounded-corners = true star-size = 25 padding = 1 active-color= #BA9977 border-width = 6 border-color = #BA9977 inactive-color = #FFF></star-rating>
+                <h1>Overall: {{overall}}</h1>
+                <star-rating v-model="overall"
+                v-bind:show-rating="false"
+                v-bind:rounded-corners="true"
+                v-bind:star-size="25"
+                v-bind:padding="1"
+                active-color = "#BA9977" 
+                v-bind:border-width = "6" 
+                border-color = "#BA9977"
+                inactive-color = "#FFF"></star-rating>
             </div>
         </div>
-        <textarea v-model="message" type = "text" placeholder="Write a comment"></textarea>
-        <button>Publish</button>
+        <textarea id="message" type = "text" placeholder="Write a comment"></textarea>
+        <button v-on:click="postReview">Publish</button>
     </div>
 </template>
 
 <script>
 import StarRating from 'vue-star-rating'
+import database from '../../firebase.js';
+import firebase from 'firebase'
+import 'firebase/firestore'
 export default {
+    props: {
+        data : Object,
+        mod_id: String,
+    },
     data() {
         return {
-        }
+            difficulty: 0,
+            effort: 0,
+            overall: 0,
+            }
     },
     components: {
         'star-rating': StarRating,
-    }
+    },
+    methods: {
+        postReview: function() {
+            database.collection("Reviews").add({
+                created_at: new Date(),
+                comments: 0,
+                module: this.mod_id,
+                mod_title: this.data.mod_name,
+                message: document.getElementById("message").value,
+                user_id: "CYQhtjvEUxqAptFwsckJ",
+                name: "mingwei",
+                upvoters_id: [],
+                downvoters_id: [],
+                upvotes: 0,
+                downvotes: 0,
+            }).then(function(docRef) {
+                console.log("Review posted with ID: ", docRef.id);
+            }).catch(function(error) {
+                console.error("Error posting review: ", error);
+            });
+            // increment num reviews
+            database.collection("Modules")
+            .doc(this.mod_id)
+            .update({num_reviews: firebase.firestore.FieldValue.increment(+1)})
+            // update difficulty, effort, overall
+            database.collection("Modules")
+            .doc(this.mod_id)
+            .update({difficulty: firebase.firestore.FieldValue.increment(this.difficulty)})
+            database.collection("Modules")
+            .doc(this.mod_id)
+            .update({effort: firebase.firestore.FieldValue.increment(this.effort)})
+            database.collection("Modules")
+            .doc(this.mod_id)
+            .update({overall: firebase.firestore.FieldValue.increment(this.overall)})
+            //setTimeout(window.location = "/summary", 1000);
+        }
+    },
 }
 </script>
 

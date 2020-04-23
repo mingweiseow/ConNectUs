@@ -1,7 +1,10 @@
 <template>
     <div id="comment">
         <div class="comment-box">
-            <box-header v-bind:header=name></box-header>
+            <div>
+                <button class ="posted-by">Posted by: {{name}}</button>
+            </div>
+            <br><br><br>
             <p>{{message}}</p>
             <div class = 'comment' style = "float:right">
                 <router-link :to="{name: 'reviewpage', params: {review_id:id} }" class='comments'>{{this.data.comments}} Comments</router-link>
@@ -18,7 +21,6 @@
 </template>
 
 <script>
-import BoxHeader from '../Rating(MW)/BoxHeader.vue'
 import Vote from './Vote.vue'
 export default {
     props: {
@@ -41,8 +43,10 @@ export default {
         }
     },
     components: {
-        'box-header': BoxHeader,
         'vote': Vote,
+    },
+    methods: {
+
     }
 }
 </script>
@@ -77,5 +81,34 @@ export default {
     line-height: 39px;
     text-decoration-line: underline;
     color: black;
+}
+
+.posted-by {
+    background: #C9B8A7;
+    border-radius: 5px;
+    padding: 8px 8px 8px 8px;
+    width: auto;
+    height: auto;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: #FFFFFF;
+    float:left;
+    margin-top: 5px;
+}
+
+button:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
+
+button:focus {outline:0;}
+
+button:hover {
+    transform: scale(1.05);
 }
 </style>

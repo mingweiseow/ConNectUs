@@ -27,10 +27,10 @@ export default {
     },
     methods: {
         fetchModuleInfo: async function() {
-            return database.collection("Modules").
-            doc(this.$route.params.module_id).
-            get().
-            then(doc => {
+            return database.collection("Modules")
+            .doc(this.$route.params.module_id)
+            .get()
+            .then(doc => {
                 this.mod_name = doc.data().mod_name
                 this.data = doc.data()
             })
