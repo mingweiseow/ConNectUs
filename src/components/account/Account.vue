@@ -30,7 +30,7 @@
 
     <div class="toggle">
         <a class="posts">Your Posts</a>
-        <router-link to="/saved" a class="saved">Saved Posts</router-link>
+        <router-link to="/saved" exact><a class="saved">Saved Posts</a></router-link>
     </div>
 
     <div class="wrapper">

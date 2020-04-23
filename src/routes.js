@@ -14,6 +14,7 @@ import AskQuestion from './components/Subthread(MW)/SubthreadPage.vue'
 import Account from './components/account/Account.vue'
 import Newothers from './components/account/Newothers.vue'
 import Saved from './components/account/Saved.vue'
+import Posts from './components/account/Posts.vue'
 
 Vue.use(Router);
 
@@ -29,7 +30,8 @@ export default new Router({
 		{ path: '/makereview', name: 'review', component: MakeReview},
 		{ path: '/askquestion', name: 'ask', component: AskQuestion},
 		{ path: '/other', name: 'other', component: Newothers},
-		{ path: '/saved', name: 'saved', component: Saved}
+		{ path: '/saved', name: 'saved', component: Saved},
+		{ path: '/posts', name: 'posts', component: Posts}
 	],
 	mode: 'history'
 })
