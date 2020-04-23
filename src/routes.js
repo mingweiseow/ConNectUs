@@ -32,7 +32,7 @@ export default new Router({
 		{ path: '/makereview/:module_id/:user_id', name: 'review', component: MakeReview},
 		{ path: '/askquestion/:module_id/:user_id', name: 'ask', component: AskQuestion},
 		{ path: '/reviewpage/:review_id/:user_id', name: 'reviewpage', component: ReviewPage},
-		{ path: '/subthreadpage/:subthread_id/:user_id', name: 'subthreadpage', component: SubthreadPage}
+		{ path: '/subthreadpage/:subthread_id/:user_id', name: 'subthreadpage', component: SubthreadPage},
 		{ path: '/makereview', name: 'review', component: MakeReview},
 		{ path: '/askquestion', name: 'ask', component: AskQuestion},
 		{ path: '/other', name: 'other', component: Newothers},
