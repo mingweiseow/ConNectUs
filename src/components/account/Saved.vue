@@ -30,7 +30,7 @@
 
     <div class="toggle">
         <a class="posts">Your Posts</a>
-        <router-link to="/saved" a class="saved">Saved Posts</router-link>
+        <a class="saved">Saved Posts</a>
     </div>
 
     <div class="wrapper">
@@ -102,7 +102,7 @@ export default {
             this.yos = user[0].year_of_study;
             this.nop = user[0].num_post;
             this.subs = user[0].subs;
-            console.log(user);
+            //console.log(user);
             }
           });
         })
@@ -116,14 +116,19 @@ export default {
                     let item = {}
                     //console.log(this.postList)
                     querySnapShot.forEach(doc=> { 
-                        if (doc.data().user_id == "CYQhtjvEUxqAptFwsckJ"){
                             item = doc.data()
+                            if (!item.subscribers === undefined || !item.subscribers == 0) {
+                              if (item.subscribers.includes("CYQhtjvEUxqAptFwsckJ")) {
                             item["id"] = doc.id
-                            console.log(item.mod_title)
+                            console.log(item.subscribers)
                             //console.log(item.title)
                             this.postList.push(item)
+                           }
+                            }
+                            
+                            
 
-                        }
+                        
                     })
                 })
         },
