@@ -18,7 +18,8 @@
             v-bind:type=type
             v-bind:reply_type=reply_type
             v-bind:id=review_id
-            v-bind:cat=cat>
+            v-bind:cat=cat
+            v-bind:user_id="this.$route.params.user_id">
             </comment-line>
         </div>
         <div class="comment-section">

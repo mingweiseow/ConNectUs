@@ -1,7 +1,7 @@
 <template>
     <div id="post">
         <div class="post-box">
-            <a id = "button"> <button style = "background-color: #C9B8A7 ; color: white; border:none; float: right; position : relative; z-index: 99;">View</button></a>
+            <router-link class="view" :to="{name:'subthreadpage', params: {subthread_id:subthread_id, user_id:user_id} }">View Post</router-link>
             <p>{{comment}}</p>
             <p>Title: {{title}}</p>
         </div>
@@ -14,14 +14,9 @@ export default {
     props: {
         comment: String,
         title: String,
+        subthread_id: String,
+        user_id: String,
     }
-   // data() {
-     //   return {
-            //comment: "",
-            //name: "mingwei:",
-       // }
-        
-   // },
 }
 </script>
 
@@ -58,6 +53,17 @@ export default {
     position: relative;
     color: #ffffff;
     text-align: left;
+}
+
+.view {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 39px;
+    text-decoration-line: underline;
+    color:#FFF;
+    float: right
 }
 
 </style>

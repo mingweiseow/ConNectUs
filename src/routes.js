@@ -16,7 +16,7 @@ import ReviewPage from './components/Comment(MW)/ReviewPage.vue'
 import SubthreadPage from './components/Subthread(MW)/SubthreadPage.vue'
 import Newothers from './components/account/Newothers.vue'
 import Saved from './components/account/Saved.vue'
-import Posts from './components/account/Posts.vue'
+import Posts from './components/account/Account.vue'
 
 Vue.use(Router);
 
@@ -35,7 +35,7 @@ export default new Router({
 		{ path: '/subthreadpage/:subthread_id/:user_id', name: 'subthreadpage', component: SubthreadPage},
 		{ path: '/makereview', name: 'review', component: MakeReview},
 		{ path: '/askquestion', name: 'ask', component: AskQuestion},
-		{ path: '/other', name: 'other', component: Newothers},
+		{ path: '/other/:user_id', name: 'other', component: Newothers},
 		{ path: '/saved', name: 'saved', component: Saved},
 		{ path: '/posts', name: 'posts', component: Posts}
 	],

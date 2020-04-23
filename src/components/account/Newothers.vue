@@ -1,36 +1,9 @@
 <template>
-<!-- <body id = "body">
-    <div class = "page">
-    <b-container fluid class="bv-example-row">
-     <b-row class="text-center">
-     <b-col cols ="3">
-        <div class = "usr">{{email}}</div>
-        <div class = "yos">Year of Study: 2</div>
-        <div class = "posts">Posts</div>
-        <div class = "subs">Subscribers</div>
-        <div class = "vertical"></div> 
-        <button class = "logout">Logout</button>
-
-    </b-col>
-    <b-col cols="9">
-        <div class ="module"> </div>
-        <a class="a">Your Posts</a>
-        <a class="b">Saved Posts</a>
-        <div class ="c"></div>
-        <div class="d">CS1010S in Y1S1</div>
-        <a class="more">View More</a>
-
-    </b-col>
-  </b-row>
-  </b-container>
-  </div>
-  </body> -->
 
 <div class="profile-page">
 
     <div class="toggle">
-        <a class="posts">Your Posts</a>
-        <a class="saved">Saved Posts</a>
+        <a class="posts">{{un}}'s Subthreads</a>
     </div>
 
     <div class="wrapper">
@@ -42,15 +15,6 @@
             <h4 class="profile-display">Subscribers: {{subs}}</h4>
             <button id="signout-btn" class="btn btn-primary btn-sm">Sign Out</button>
         </div>
-        
-        <!-- <div class="profile-content">
-            for each post: 
-            <div class="post">
-                <span class="details" id="saved-title">Posts</span>
-                <a class="btn btn-primary btn-md" role="button" id="view-post-btn">View</a>
-            </div>
-        </div>
-    </div> -->
 
 <div id = 'your_posts'>
   <div id ="postbox">
@@ -58,6 +22,8 @@
       v-bind:style = 'postStyle'
       v-bind:comment = 'item.mod_title'
       v-bind:title = "item.title"
+      v-bind:user_id = "item.user_id"
+      v-bind:subthread_id="item.id"
       ></postBox>
       </div>
     </div>
@@ -93,7 +59,7 @@ export default {
           let user = [];
           querySnapshot.forEach((doc) => {
             //console.log(doc);
-            if (doc.id == "uAuzI7DjkDQSmJXIjUJL"){
+            if (doc.id == this.$route.params.user_id){
             user.push(doc.data());
             //console.log(doc.data());
             this.email = user[0].email;
@@ -116,35 +82,14 @@ export default {
                     //console.log(this.postList)
                     querySnapShot.forEach(doc=> { 
                       console.log(doc.data())
-                        if (doc.data().user_id == "uAuzI7DjkDQSmJXIjUJL"){
+                        if (doc.data().user_id == this.$route.params.user_id){
                             item = doc.data()
                             item["id"] = doc.id
-                            //console.log(item.mod_title)
-                            //console.log(item.title)
                             this.postList.push(item)
-
                         }
                     })
                 })
         },
-
-      //  fetchSubthreadsMod: async function() {
-      //          return database.collection("Subthreads").get().then((querySnapShot)=>{
-         //           let item = {}
-          //          console.log(this.postList)
-        //            querySnapShot.forEach(doc=> { 
-      //                 if (doc.data().user_id == "CYQhtjvEUxqAptFwsckJ"){
-                 //           item = doc.data()
-               //             item["id"] = doc.id
-             //               console.log(item.mod_title)
-           //                 this.postList.push(item)
-
-         //               }
-       //             })
-     //           })
-      //  },
-
-
   },
 
    components: {

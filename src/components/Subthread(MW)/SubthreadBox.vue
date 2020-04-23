@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         subscribeSubthread: function() {
-            var db = database.collection("Subthreads").doc(this.user_id)
+            var db = database.collection("Subthreads").doc(this.id)
             if (this.data.subscribers.includes(this.user_id) == true) {
                 alert("You have unsubscribed to this subthread.")
                 db.update({subscribers: firebase.firestore.FieldValue.arrayRemove(this.user_id)})
@@ -60,7 +60,7 @@ export default {
                 alert("You have subscribed to this subthread.")
                 db.update({subscribers: firebase.firestore.FieldValue.arrayUnion(this.user_id)})
             }
-            setTimeout(location.reload.bind(location), 400);
+            setTimeout(location.reload.bind(location), 1000);
         }
     },
 }

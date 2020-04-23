@@ -2,7 +2,7 @@
     <div id="comment">
         <div class="comment-box">
             <div>
-                <button class ="posted-by">Posted by: {{name}}</button>
+                <button v-on:click="goAccount" class ="posted-by">Posted by: {{name}}</button>
             </div>
             <br><br><br>
             <p>{{message}}</p>
@@ -46,7 +46,9 @@ export default {
         'vote': Vote,
     },
     methods: {
-
+        goAccount: function() {
+            window.location = "/other/"+this.user_id
+        }
     }
 }
 </script>
