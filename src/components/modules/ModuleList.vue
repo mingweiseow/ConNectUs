@@ -1,11 +1,11 @@
 <template>
   <vs-list>
     <vs-list-item class = 'module-info'>
-      <vs-button class = 'buttons' color="#BA9977" type="flat" to = "/summary"> CS1010S </vs-button>
+      <vs-button class = 'buttons' color="#BA9977" type="flat" to = "/summary/NFFeJ5YqTmBaAqoW12hn/CD4Sln24acRWGm2w33LM"> CS1010S </vs-button>
     </vs-list-item>
     <br>
     <vs-list-item  class = 'module-info'>
-    <vs-button class = 'buttons' color="#BA9977" type="flat"> CS1010J </vs-button>
+    <vs-button class = 'buttons' color="#BA9977" to = "aJuw71f1KZjrDaBKBVfN/CD4Sln24acRWGm2w33LM" type="flat"> CS1010J </vs-button>
     </vs-list-item>
     <br>
   </vs-list>
