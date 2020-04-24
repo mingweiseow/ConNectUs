@@ -21,8 +21,8 @@ export default {
         }
     },
     methods: {
-        postSubthread: function() {
-            database.collection("Subthreads").add({
+        postSubthread: async function() {
+            await database.collection("Subthreads").add({
                 created_at: new Date(),
                 comments: 0,
                 module: this.mod_id,
@@ -37,11 +37,11 @@ export default {
                 downvotes: 0,
                 subscribers: [],
             }).then(function(docRef) {
-                console.log("Subthread posted with ID: ", docRef.id);
+                console.log("Subthread posted with ID: ", docRef.id)
             }).catch(function(error) {
                 console.error("Error posting subthread: ", error);
             });
-            setTimeout(window.location = "/summary/"+this.mod_id+"/"+this.$route.params.user_id, 3000);
+            this.reload()
         },
         fetchUserName: async function() {
             database.collection("Users")
@@ -50,7 +50,10 @@ export default {
             .then(doc => {
                 this.user_name = doc.data().name
             })
-        }
+        },
+        reload:function() {
+            setTimeout(window.location = "/summary/"+this.mod_id+"/"+this.$route.params.user_id);
+        },
     },
     async created() {
         await this.fetchUserName()

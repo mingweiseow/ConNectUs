@@ -37,8 +37,8 @@ export default {
         'profile-pic': ProfilePicture
     },
     methods: {
-        postComment: function() {
-            database.collection(this.type).add({
+        postComment: async function() {
+            await database.collection(this.type).add({
                 created_at: new Date(),
                 mod_name: this.data.mod_title,
                 message: document.getElementById("comment-line").value,
@@ -55,10 +55,9 @@ export default {
             }).catch(function(error) {
                 console.error("Error posting reply: ", error);
             });
-            database.collection(this.cat)
+            await database.collection(this.cat)
             .doc(this.id)
             .update({comments: firebase.firestore.FieldValue.increment(+1)})
-
             setTimeout(location.reload.bind(location), 3000);
         },
     },

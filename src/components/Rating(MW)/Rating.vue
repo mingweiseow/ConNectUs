@@ -66,8 +66,8 @@ export default {
         'star-rating': StarRating,
     },
     methods: {
-        postReview: function() {
-            database.collection("Reviews").add({
+        postReview: async function() {
+            await database.collection("Reviews").add({
                 created_at: new Date(),
                 comments: 0,
                 module: this.mod_id,
@@ -85,17 +85,17 @@ export default {
                 console.error("Error posting review: ", error);
             });
             // increment num reviews
-            database.collection("Modules")
+            await database.collection("Modules")
             .doc(this.mod_id)
             .update({num_reviews: firebase.firestore.FieldValue.increment(+1)})
             // update difficulty, effort, overall
-            database.collection("Modules")
+            await database.collection("Modules")
             .doc(this.mod_id)
             .update({difficulty: firebase.firestore.FieldValue.increment(this.difficulty)})
-            database.collection("Modules")
+            await database.collection("Modules")
             .doc(this.mod_id)
             .update({effort: firebase.firestore.FieldValue.increment(this.effort)})
-            database.collection("Modules")
+            await database.collection("Modules")
             .doc(this.mod_id)
             .update({overall: firebase.firestore.FieldValue.increment(this.overall)})
             setTimeout(window.location = "/summary/"+this.mod_id+"/"+this.$route.params.user_id, 3000);
