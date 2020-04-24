@@ -1,7 +1,7 @@
 <template>
     <div id="comment">
         <div class="comment-box">
-            <button class ="posted-by">Posted by: {{name}}</button>
+            <button v-on:click="goAccount" class ="posted-by">Posted by: {{name}}</button>
             <button v-on:click="subscribeSubthread" class ="posted-by">Subscribe</button>
             <box-header v-bind:header=title></box-header>
             <p>{{message}}</p>
@@ -61,6 +61,9 @@ export default {
                 db.update({subscribers: firebase.firestore.FieldValue.arrayUnion(this.user_id)})
             }
             setTimeout(location.reload.bind(location), 1000);
+        },
+        goAccount: function() {
+            window.location = "/other/"+this.user_id
         }
     },
 }
