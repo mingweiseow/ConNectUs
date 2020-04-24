@@ -13,10 +13,10 @@
         <div class="con-tab-ejemplo">
         </div>
       </vs-tab>
-      <vs-tab label="Personal Analytics" icon ='face'>
+      <vs-tab label="Analytics" icon ='face'>
         <div class="con-tab-ejemplo">
-          <h1> Analytics </h1>
-          <analytics></analytics>
+          <h1></h1>
+          <connectuspie></connectuspie>
         </div>
       </vs-tab>
     </vs-tabs>
@@ -28,6 +28,7 @@
 import 'material-icons/iconfont/material-icons.css';
 import Subscriptions from './Subscriptions.vue'
 import Featured from './Featured.vue'
+import ConnectUsPie from './ConnectUsPie.vue'
 
 export default {
 
@@ -37,6 +38,7 @@ export default {
   components: {
     'subscriptions':Subscriptions,
     'featured':Featured,
+    'connectuspie':ConnectUsPie,
   }
 }
 </script>
@@ -59,8 +61,6 @@ export default {
   color: black;
   background rgba(196, 196, 196, 0.2)
   height: 82px;
-
-
 }
   
 </style>

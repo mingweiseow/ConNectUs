@@ -3,7 +3,8 @@
 <div class="profile-page">
 
     <div class="toggle">
-        <a class="posts">{{un}}'s Subthreads</a>
+        <router-link to="/account" exact><a class="posts">Your Posts</a></router-link>
+        <a class="saved">Saved Posts</a>
     </div>
 
     <div class="wrapper">
@@ -13,7 +14,8 @@
             <h4 class="profile-display">Year of Study: {{yos}}</h4>
             <h4 class="profile-display">No. of Posts: {{nop}}</h4>
             <h4 class="profile-display">Subscribers: {{subs}}</h4>
-            <button id="signout-btn" class="btn btn-primary btn-sm">Sign Out</button>
+            
+            <router-link to="/other" tag="button" button id="signout-btn" class="btn btn-primary btn-sm">Sign Out</router-link>
         </div>
 
 <div id = 'your_posts'>
@@ -22,7 +24,7 @@
       v-bind:style = 'postStyle'
       v-bind:comment = 'item.mod_title'
       v-bind:title = "item.title"
-      v-bind:user_id = "item.user_id"
+      v-bind:user_id="item.user_id"
       v-bind:subthread_id="item.id"
       ></postBox>
       </div>
@@ -35,6 +37,7 @@
 <script>
 import database from '../../firebase.js';
 import PostBox from './PostBox.vue';
+import firebase from 'firebase';
 export default {
   data() {
     return {
@@ -48,26 +51,24 @@ export default {
       subs:  '',
       postList: [],
       comment: '',
+      user_id: '',
     };
   },
   methods: {
-   fetchItems: function () {
+    fetchItems: function () {
       database
         .collection("Users")
         .get()
         .then((querySnapshot) => {
           let user = [];
           querySnapshot.forEach((doc) => {
-            //console.log(doc);
-            if (doc.id == this.$route.params.user_id){
+            if (doc.id == this.user_id){
             user.push(doc.data());
-            //console.log(doc.data());
             this.email = user[0].email;
             this.un = user[0].name;
             this.yos = user[0].year_of_study;
             this.nop = user[0].num_post;
             this.subs = user[0].subs;
-            //console.log(user);
             }
           });
         })
@@ -75,31 +76,42 @@ export default {
           console.log("Error getting documents", err);
         });
     },
-
+    
     fetchReviewsMod: async function() {
                 return database.collection("Subthreads").get().then((querySnapShot)=>{
                     let item = {}
-                    //console.log(this.postList)
                     querySnapShot.forEach(doc=> { 
-                      console.log(doc.data())
-                        if (doc.data().user_id == this.$route.params.user_id){
                             item = doc.data()
+                            if (!item.subscribers === undefined || !item.subscribers == 0) {
+                              if (item.subscribers.includes(this.user_id)) {
                             item["id"] = doc.id
+                            console.log(item.subscribers)
                             this.postList.push(item)
+                           }
                         }
                     })
                 })
         },
+    fetchUserId: async function() {
+        var user = firebase.auth().currentUser;
+        var email = user.email;
+        database.collection("Users").where("email", "==", email)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach(doc => {
+              this.user_id = doc.id
+        })
+      })
+    }
   },
-
    components: {
      'postBox': PostBox
   },
 
   async created() {
+    await this.fetchUserId();
     await this.fetchItems();
     await this.fetchReviewsMod(); 
-    //await this.fetchSubthreadsMod();
   },
 };
 </script>
@@ -148,14 +160,6 @@ export default {
     text-align: center;
     padding-top: 175px;
 }
-
-/*if want to have profile image
-.profile-img {
-    height: 85px;
-    width: 85px;
-    margin-top: 50px;
-    margin-bottom: 15px;
-}*/
 
 h4 {
     font-size: 18px;
@@ -234,168 +238,4 @@ button:active {
 button:hover {
     transform: scale(1.1);
 }
-
-/*#id{
-    background-color: #E5E5E5;
-    width: 100%;
-    height: 100%;
-}
-
-
-.logout {
-width: 100px;
-height: 40px;
-background: #BA9977;
-border-radius: 5px;
-position: absolute;
-font-family: 'Poppins', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 27px;
-color: #FFFFFF;
-}
-
-.module {
-width: 1012px;
-height: 771px;
-background: rgba(196, 196, 196, 0.1);
-}
-
-.more {
-cursor: pointer;
-width: 93px;
-height: 27px;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 27px;
-text-decoration-line: underline;
-color: #FFFFFF;
-}
-
-.a {
-position: absolute;
-cursor: pointer;
-width: 103px;
-height: 30px;
-left: 385px;
-top: 150px;
-font-family: 'Poppins', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 30px;
-text-decoration-line: underline;
-color: #000000;
-}
-
-.b {
-cursor: pointer;
-position: absolute;
-width: 121px;
-height: 30px;
-left: 543px;
-top: 150px;
-font-family: Poppins;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 30px;
-text-decoration-line: underline;
-color: #000000;
-}
-
-.c{
-position: absolute;
-width: 971px;
-height: 82px;
-left: 405px;
-top: 217px;
-background: #C9B8A7;
-}
-
-.d {
-position: absolute;
-width: 255px;
-height: 54px;
-left: 438px;
-top: 231px;
-font-family: Poppins;
-font-style: normal;
-font-weight: normal;
-font-size: 36px;
-line-height: 54px;
-color: #FFFFFF;
-}
-
-
-.usr {
-position: absolute;
-width: 199px;
-height: 30px;
-left: 185px;
-top: 428px;
-font-family: 'Poppins', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 30px;
-color: #000000;
-}
-
-.yos {
-position: absolute;
-width: 153px;
-height: 30px;
-left: 210px;
-top: 477px;
-font-family: 'Poppins', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 30px;
-color: #000000;
-
-}
-
-.posts{
-position: absolute;
-width: 87px;
-height: 30px;
-left: 235px;
-top: 526px;
-font-family: 'Poppins', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 30px;
-color: #000000;
-}
-
-.subs {
-position: absolute;
-width: 151px;
-height: 30px;
-left: 205px;
-top: 575px;
-font-family: 'Poppins', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 30px;
-color: #000000;
-
-}
-
-.vertical { 
-position: absolute;
-width: 844px;
-height: 0px;
-left: 330px;
-top: 650px;
-border: 2px solid #E8E8E8;
-transform: rotate(-90deg);
-}*/
 </style>

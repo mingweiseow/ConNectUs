@@ -22,13 +22,15 @@ export default {
         type: String,
         reply_type: String,
         id: String,
-        cat: String
+        cat: String,
+        user_id: String,
     },
     data() {
         return {
             PicStyle: {
                 margin: "0px 25px 0px 0px"
-            }
+            },
+            user_name: "",
         }
     },
     components: {
@@ -40,8 +42,8 @@ export default {
                 created_at: new Date(),
                 mod_name: this.data.mod_title,
                 message: document.getElementById("comment-line").value,
-                user_id: "CYQhtjvEUxqAptFwsckJ",
-                name:"mingwei",
+                user_id: this.user_id,
+                name:this.user_name,
                 [this.reply_type]: this.id,
                 upvoters_id: [],
                 downvoters_id: [],
@@ -57,8 +59,19 @@ export default {
             .doc(this.id)
             .update({comments: firebase.firestore.FieldValue.increment(+1)})
 
-            setTimeout(location.reload.bind(location), 1000);
+            setTimeout(location.reload.bind(location), 3000);
         },
+    },
+    fetchUserName: async function() {
+        database.collection("Users")
+        .doc(this.$route.params.user_id)
+        .get()
+        .then(doc => {
+            this.user_name = doc.data().name
+        })
+    },
+    async created() {
+        await this.fetchUserName()
     }
     
 }

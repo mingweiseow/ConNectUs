@@ -59,6 +59,7 @@ export default {
             difficulty: 0,
             effort: 0,
             overall: 0,
+            user_name: "",
             }
     },
     components: {
@@ -72,8 +73,8 @@ export default {
                 module: this.mod_id,
                 mod_title: this.data.mod_name,
                 message: document.getElementById("message").value,
-                user_id: "CYQhtjvEUxqAptFwsckJ",
-                name: "mingwei",
+                user_id: this.$route.params.user_id,
+                name: this.user_name,
                 upvoters_id: [],
                 downvoters_id: [],
                 upvotes: 0,
@@ -97,9 +98,20 @@ export default {
             database.collection("Modules")
             .doc(this.mod_id)
             .update({overall: firebase.firestore.FieldValue.increment(this.overall)})
-            //setTimeout(window.location = "/summary", 1000);
+            setTimeout(window.location = "/summary/"+this.mod_id+"/"+this.$route.params.user_id, 3000);
+        },
+        fetchUserName: async function() {
+            database.collection("Users")
+            .doc(this.$route.params.user_id)
+            .get()
+            .then(doc => {
+                this.user_name = doc.data().name
+            })
         }
     },
+    async created() {
+        await this.fetchUserName()
+    }
 }
 </script>
 

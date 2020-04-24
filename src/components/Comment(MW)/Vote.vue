@@ -75,13 +75,6 @@ export default {
                 this.counterDown = doc.data().downvotes
             })
         }
-        /*toggleShapeColour: function() {
-            if (this.data.upvoters_id.includes(this.data.user_id)) {
-                document.getElementById("up-vote").style.borderColor = "transparent transparent #f5e2d0 transparent"
-            } else if (this.data.downvoters_id.includes(this.data.user_id)) {
-                document.getElementById("down-vote").style.borderColor = "#f5e2d0 transparent transparent transparent"
-            }
-        }*/
     },
     created(){
         //this.toggleShapeColour()

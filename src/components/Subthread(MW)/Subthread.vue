@@ -13,7 +13,12 @@ import database from '../../firebase.js';
 export default {
     props: {
         data: Object,
-        mod_id: String
+        mod_id: String,
+    },
+    data() {
+        return {
+            user_name: ""
+        }
     },
     methods: {
         postSubthread: function() {
@@ -24,8 +29,8 @@ export default {
                 mod_title: this.data.mod_name,
                 message: document.getElementById("message").value,
                 title: document.getElementById("title").value,
-                user_id: "CYQhtjvEUxqAptFwsckJ",
-                name: "mingwei",
+                user_id: this.$route.params.user_id,
+                name: this.user_name,
                 upvoters_id: [],
                 downvoters_id: [],
                 upvotes: 0,
@@ -36,8 +41,19 @@ export default {
             }).catch(function(error) {
                 console.error("Error posting subthread: ", error);
             });
-            setTimeout(window.location = "/summary", 600);
+            setTimeout(window.location = "/summary/"+this.mod_id+"/"+this.$route.params.user_id, 3000);
         },
+        fetchUserName: async function() {
+            database.collection("Users")
+            .doc(this.$route.params.user_id)
+            .get()
+            .then(doc => {
+                this.user_name = doc.data().name
+            })
+        }
+    },
+    async created() {
+        await this.fetchUserName()
     }
 }
 </script>
