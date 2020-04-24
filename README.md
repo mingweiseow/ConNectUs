@@ -1,4 +1,4 @@
-# week7p2
+# conNectUs
 
 ## Project setup
 ```
