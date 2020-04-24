@@ -1,7 +1,7 @@
 <template>
   <div class="chart">
-    <h1>Bar Chart</h1>
-    <chart></chart>
+<!--     <h1>Posts by Day</h1>
+ -->    <chart></chart>
   </div>
 </template>
 
@@ -15,4 +15,10 @@ export default {
 </script>
 
 <style scoped>
+div {
+	margin: 50px;
+}
+h1 {
+	text-align: center;
+}
 </style>

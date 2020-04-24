@@ -1,6 +1,6 @@
 <template>
   <div class="chart">
-    <h1>Pie Chart</h1>
+<!--     <h1>Pie Chart</h1> -->
     <chart></chart>
   </div>
 </template>

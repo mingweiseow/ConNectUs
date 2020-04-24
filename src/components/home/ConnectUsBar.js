@@ -1,5 +1,6 @@
 import { Bar } from 'vue-chartjs'
 import database from '../../firebase.js'
+import firebase from 'firebase'
  
 export default {
   extends: Bar,
@@ -18,7 +19,7 @@ export default {
             legend: { display: false },
             title: {
               display: true,
-              text: 'Sorted by Days'
+              text: 'Number of Posts by Day'
             },
             responsive: true,
             maintainAspectRatio: false
@@ -27,21 +28,36 @@ export default {
   },
   methods: {
     fetchItems: function () {
+      var user = firebase.auth().currentUser;
+      var email = user.email;
+      var id;
+
+      database.collection("Users").where("email", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(doc => {
+          id = doc.id
+          //console.log(id)
+        })
+      })
+
       database.collection('Reviews').get().then(querySnapShot => {
-        querySnapShot.forEach(doc => { 
-          //if (doc.data().email == email) {
+        querySnapShot.forEach(doc => {
+          console.log(id)
+          var item = doc.data()
+
+          if (item["user_id"] == id) {
           //add in login functions
           //this.datacollection.labels.push(doc.data().Day)
-          var item = doc.data()
 
           var datetime = item['created_at'].toDate();
           var day = datetime.getDay();
           var count = this.counts[day] + 1;
           this.counts[day] = count;
-          console.log(this.counts)
+          //console.log(this.counts)
           //this.datacollection.datasets[0].data.push(doc.data().No)
           //console.log(doc.data())
-        //}
+        }
         })
         for (let i = 0; i < this.counts.length; i++) {
           this.datacollection.datasets[0].data.push(this.counts[i])
