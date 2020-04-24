@@ -13,9 +13,10 @@
         <div class="con-tab-ejemplo">
         </div>
       </vs-tab>
-      <vs-tab label="Saved" icon ='save'>
+      <vs-tab label="Personal Analytics" icon ='face'>
         <div class="con-tab-ejemplo">
-          login
+          <h1> Analytics </h1>
+          <analytics></analytics>
         </div>
       </vs-tab>
     </vs-tabs>
