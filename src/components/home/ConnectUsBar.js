@@ -26,12 +26,14 @@ export default {
     }
   },
   methods: {
-    fetchItems: function () { 
+    fetchItems: function () {
       database.collection('Reviews').get().then(querySnapShot => {
         querySnapShot.forEach(doc => { 
+          //if (doc.data().email == email) {
           //add in login functions
           //this.datacollection.labels.push(doc.data().Day)
           var item = doc.data()
+
           var datetime = item['created_at'].toDate();
           var day = datetime.getDay();
           var count = this.counts[day] + 1;
@@ -39,6 +41,7 @@ export default {
           console.log(this.counts)
           //this.datacollection.datasets[0].data.push(doc.data().No)
           //console.log(doc.data())
+        //}
         })
         for (let i = 0; i < this.counts.length; i++) {
           this.datacollection.datasets[0].data.push(this.counts[i])
